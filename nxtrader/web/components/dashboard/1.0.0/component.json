@@ -1,0 +1,11 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "jetVersion": "^15.1.11",
+  "type": "pack",
+  "displayName": "A user friendly, translatable name of the pack.",
+  "description": "A translatable high-level description for the pack.",
+  "dependencies": {
+    "dashboard-babylonjs-viewer": "1.0.0"
+  }
+}

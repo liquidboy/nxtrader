@@ -9,30 +9,22 @@ import { registerCustomElement } from "ojs/ojvcomponent";
 import { h } from "preact";
 import { useEffect } from "preact/hooks";
 import Context = require("ojs/ojcontext");
-import { Footer } from "./footer";
-import { Header } from "./header";
-import { Content } from "./content/index";
+import "dashboard/babylonjs-viewer/loader";
 
 type Props = Readonly<{
-  appName?: string;
-  userLogin?: string;
+  version?: string;
 }>;
 
 export const App = registerCustomElement(
   "app-root",
-  ({ appName = "App Name", userLogin = "jose" }: Props) => {
+  ({ version = "1.0.0" }: Props) => {
     useEffect(() => {
       Context.getPageContext().getBusyContext().applicationBootstrapComplete();
     }, []);
     
     return (
-      <div id="appContainer" class="oj-web-applayout-page">
-        <Header
-          appName={appName} 
-          userLogin={userLogin} 
-        />
-        <Content />
-        <Footer />
+      <div id="appContainer" class="oj-flex">
+        <dashboard-babylonjs-viewer class="oj-flex-item"></dashboard-babylonjs-viewer>
       </div>
     );
   }

@@ -29,6 +29,9 @@
       ],
       "preact": [
         "./node_modules/preact"
+      ],
+      "dashboard/*": [
+        "./src/components/dashboard/*"
       ]
     },
     "declaration": true,
