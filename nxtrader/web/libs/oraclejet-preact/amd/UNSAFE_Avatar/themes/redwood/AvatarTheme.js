@@ -1,0 +1,2 @@
+define(['exports', '../AvatarStyles.css', './AvatarBaseTheme.css', './AvatarVariants.css', 'css!./../../../AvatarStyles.styles.css', 'module', 'css!./../../../AvatarVariants.styles2.css', '../../../vanilla-extract-recipes-createRuntimeFn.esm-f809e2c8'], (function(e,s,a,t,r,i,l,c){"use strict";const n={baseTheme:a.baseTheme,multiVariantStyles:t.multiVariantStyles,variants:s.variants,styles:s.styles};e.AvatarRedwoodTheme=n,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=AvatarTheme.js.map

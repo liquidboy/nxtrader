@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', './utils/UNSAFE_classNames', './PRIVATE_Message/themes/MessageStyles.css', './classNames-415aadfa'], (function(s,e,a,n,t){"use strict";s.MessageSummary=function({text:s,variant:a="banner"}){const m=t.classNames(["banner"===a&&"oj-c-messagebanner-summary",n.messageSummaryStyles.base,n.messageSummaryStyles[a]]);return e.jsx("div",{role:"heading",class:m,children:s})}}));
+//# sourceMappingURL=MessageSummary-d24a7ab2.js.map

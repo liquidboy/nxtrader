@@ -1,0 +1,15 @@
+.MenuStyles_menuContainerStyle__10o3ulj0 {
+  outline-style: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: pan-y;
+  background-color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-surface-neutral0);
+}
+.MenuStyles_dropdownMenuContainerStyle__10o3ulj1 {
+  padding-top: calc(2 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  padding-bottom: calc(2 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}
+.MenuStyles_sheetMenuContainerStyle__10o3ulj2 {
+  padding-top: calc(5 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  padding-bottom: calc(2 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}

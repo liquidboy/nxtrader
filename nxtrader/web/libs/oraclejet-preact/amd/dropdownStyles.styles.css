@@ -1,0 +1,12 @@
+.dropdownStyles_base__1le3d5u0 {
+  box-sizing: border-box;
+  background-color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-surface-neutral0);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-border-divider);
+  border-radius: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-border-radius-md);
+  box-shadow: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-box-shadow-xs);
+  max-height: inherit;
+  display: flex;
+  flex-direction: column;
+}

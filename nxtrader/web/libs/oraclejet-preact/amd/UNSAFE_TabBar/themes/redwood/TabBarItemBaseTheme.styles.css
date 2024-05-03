@@ -1,0 +1,7 @@
+.TabBarItemBaseTheme_baseTheme__1ex8m7v0 {
+  --labelColor__1j8m5ay0: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-text-icon-secondary);
+  --labelColorSelected__1j8m5ay1: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-text-icon-primary);
+  --iconSize__1j8m5ay2: calc(4 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  --borderWidthBottom__1j8m5ay3: 3px;
+  --borderWidthLeftRight__1j8m5ay4: 1.5px;
+}

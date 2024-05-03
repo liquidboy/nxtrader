@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', '../hooks/UNSAFE_useTheme', 'preact/hooks', '../index-97abd6be', 'preact', '../Common', '../Common/themes', '../Common/themes/redwood/theme', '../Common/themes/themeContract.css', 'preact/compat'], (function(e,o,t,m,s,n,r,c,h,a,u){"use strict";e.withThemeIcon=e=>m=>{const{name:s}=t.useTheme(),n=e[s];return o.jsx(n,{...m})},Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=PRIVATE_withThemeIcon.js.map

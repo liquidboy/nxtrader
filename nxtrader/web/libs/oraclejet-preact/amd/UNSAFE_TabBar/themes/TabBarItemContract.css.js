@@ -1,0 +1,2 @@
+define(['exports'], (function(e){"use strict";e.tabBarItemVars={labelColor:"var(--labelColor__1j8m5ay0)",labelColorSelected:"var(--labelColorSelected__1j8m5ay1)",iconSize:"var(--iconSize__1j8m5ay2)",borderWidthBottom:"var(--borderWidthBottom__1j8m5ay3)",borderWidthLeftRight:"var(--borderWidthLeftRight__1j8m5ay4)"},Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=TabBarItemContract.css.js.map

@@ -1,0 +1,12 @@
+.TabBarItemVariants_multiVariantStyles_selection_isSelected__r59sxp0 {
+  color: var(--labelColorSelected__1j8m5ay1);
+  border-bottom: var(--borderWidthBottom__1j8m5ay3) solid;
+  border-left: var(--borderWidthLeftRight__1j8m5ay4) solid transparent;
+  border-right: var(--borderWidthLeftRight__1j8m5ay4) solid transparent;
+}
+.TabBarItemVariants_multiVariantStyles_compound_0__r59sxp6 {
+  outline-style: dotted;
+  outline-offset: -1px;
+  outline-width: 1px;
+  outline-color: var(--labelColor__1j8m5ay0);
+}

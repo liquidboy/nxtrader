@@ -1,0 +1,18 @@
+.ClearIconStyles_clearIconStyles__8wwy0m0 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-cursor-clickable);
+  padding-inline: 0;
+  padding-block: 0;
+  border-radius: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-border-radius-md);
+  color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-text-icon-primary);
+  width: 2.75rem;
+  height: 2.75rem;
+  line-height: 2.75rem;
+}
+.ClearIconStyles_clearIconStyles__8wwy0m0:hover {
+  color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-text-icon-primary);
+  background-color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-overlay-hover);
+  border-color: transparent;
+}

@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', 'preact/hooks', './utils/UNSAFE_classNames', './PRIVATE_List/themes/ListStyles.css', './classNames-415aadfa'], (function(e,s,t,n,a,i){"use strict";e.SkeletonContainer=function({children:e,minimumCount:n=1}){const[c,o]=t.useState(!1);t.useEffect((()=>{setTimeout((()=>{o(!0)}),50)}),[]);const r=i.classNames([a.skeletonStyles.container]);return c&&e?s.jsx("div",{class:r,role:"presentation",children:[...Array(n)].map(((s,t)=>e(t)))}):null}}));
+//# sourceMappingURL=SkeletonContainer-3af845ce.js.map

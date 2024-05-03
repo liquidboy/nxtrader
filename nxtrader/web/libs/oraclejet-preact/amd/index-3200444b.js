@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', './UNSAFE_Icon', './Icon-f70f1f56'], (function(e,n,r,c){"use strict";e.SvgCaretLeft=e=>n.jsx(c.Icon,{viewBox:"0 0 24 24",...e,children:n.jsx("g",{fill:"none",children:n.jsx("path",{d:"m15 6-6 6 6 6V6z",fill:"currentcolor"})})}),e.SvgCaretRight=e=>n.jsx(c.Icon,{viewBox:"0 0 24 24",...e,children:n.jsx("g",{fill:"none",children:n.jsx("path",{d:"m9 6 6 6-6 6V6z",fill:"currentcolor"})})})}));
+//# sourceMappingURL=index-3200444b.js.map

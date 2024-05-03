@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', './PRIVATE_List', './List-fe48dd29'], (function(t,e,a,i){"use strict";t.ListView=function(t){const a=t.data?t.data.map((e=>({data:e,metadata:{key:t.getRowKey(e)}}))):null,n=t.onLoadMore?t.onLoadMore:()=>{},o=a?{offset:0,data:a,sizePrecision:t.hasMore?"atLeast":"exact",totalSize:a.length}:null;return e.jsx(i.List,{isVirtualized:!1,...t,onLoadRange:n,data:o,children:t.children})}}));
+//# sourceMappingURL=ListView-761852d3.js.map

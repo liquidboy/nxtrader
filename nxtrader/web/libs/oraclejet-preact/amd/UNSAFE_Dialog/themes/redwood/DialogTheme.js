@@ -1,0 +1,2 @@
+define(['exports', '../DialogStyles.css', './DialogBaseTheme.css', './DialogVariants.css', 'css!./../../../DialogStyles.styles.css', 'module', '../../../vanilla-extract-recipes-createRuntimeFn.esm-f809e2c8'], (function(e,s,t,a,i,l,c){"use strict";const n={baseTheme:t.baseTheme,multiVariantStyles:a.multiVariantStyles,variants:s.variants,styles:s.styles};e.DialogRedwoodTheme=n,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=DialogTheme.js.map
