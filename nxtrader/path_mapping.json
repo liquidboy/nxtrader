@@ -10,6 +10,39 @@
     "3rdparty": "https://static.oracle.com/cdn/jet/15.1.0/3rdparty"
   },
   "libs": {
+    "@preact/signals": {
+      "cwd": "node_modules/@preact/signals/dist/amd",
+      "debug": {
+        "src":  "signals.js",
+        "path": "libs/@preact/signals/signals.js"
+      },
+      "release": {
+        "src":  "signals.js",
+        "path": "libs/@preact/signals/signals.js"
+      }
+    },
+    "@preact/signals-core": {
+      "cwd": "node_modules/@preact/signals-core/dist/amd",
+      "debug": {
+        "src":  "signals-core.js",
+        "path": "libs/@preact/signals-core/signals-core.js"
+      },
+      "release": {
+        "src":  "signals-core.js",
+        "path": "libs/@preact/signals-core/signals-core.js"
+      }
+    },
+    "babylonjs": {
+      "cwd": "node_modules/babylonjs",
+      "debug": {
+        "src": "babylon.max.js",
+        "path": "libs/babylonjs/babylonjs.max.js"
+      },
+      "release": {
+        "src": "babylon.js",
+        "path": "libs/babylonjs/babylonjs.js"
+      }
+    },
     "knockout": {
       "cdn": "3rdparty",
       "cwd": "node_modules/knockout/build/output",
