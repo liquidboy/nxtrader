@@ -4,10 +4,10 @@ import 'ojs/oj-jsx-interfaces';
 import { ExtendGlobalProps } from "ojs/ojvcomponent";
 import { h, ComponentProps, ComponentType } from "preact";
 import "css!dashboard/babylonjs-viewer/babylonjs-viewer-styles.css";
-type Props = Readonly<{
-    message?: string;
-}>;
-declare function BabylonjsViewerImpl({ message }: Props): h.JSX.Element;
+import * as BABYLON from 'babylonjs';
+export declare const babylonEngine: import("@preact/signals-core").Signal<BABYLON.Engine | undefined>;
+export declare const babylonScene: import("@preact/signals-core").Signal<BABYLON.Scene | undefined>;
+declare function BabylonjsViewerImpl(): h.JSX.Element;
 export declare const BabylonjsViewer: ComponentType<ExtendGlobalProps<ComponentProps<typeof BabylonjsViewerImpl>>>;
 export {};
 export interface BabylonjsViewerElement extends JetElement<BabylonjsViewerElementSettableProperties>, BabylonjsViewerElementSettableProperties {
@@ -19,25 +19,10 @@ export interface BabylonjsViewerElement extends JetElement<BabylonjsViewerElemen
     setProperty<T extends string>(property: T, value: JetSetPropertyType<T, BabylonjsViewerElementSettableProperties>): void;
     setProperties(properties: BabylonjsViewerElementSettablePropertiesLenient): void;
 }
-export namespace BabylonjsViewerElement {
-    type messageChanged = JetElementCustomEventStrict<BabylonjsViewerElement['message']>;
-}
 export interface BabylonjsViewerElementEventMap extends HTMLElementEventMap {
-    'messageChanged': JetElementCustomEventStrict<BabylonjsViewerElement['message']>;
 }
 export interface BabylonjsViewerElementSettableProperties extends JetSettableProperties {
-    message?: Props['message'];
 }
 export interface BabylonjsViewerElementSettablePropertiesLenient extends Partial<BabylonjsViewerElementSettableProperties> {
     [key: string]: any;
-}
-export interface BabylonjsViewerIntrinsicProps extends Partial<Readonly<BabylonjsViewerElementSettableProperties>>, GlobalProps, Pick<preact.JSX.HTMLAttributes, 'ref' | 'key'> {
-    onmessageChanged?: (value: BabylonjsViewerElementEventMap['messageChanged']) => void;
-}
-declare global {
-    namespace preact.JSX {
-        interface IntrinsicElements {
-            'dashboard-babylonjs-viewer': BabylonjsViewerIntrinsicProps;
-        }
-    }
 }
