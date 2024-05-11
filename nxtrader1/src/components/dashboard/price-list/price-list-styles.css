@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-price-list .dashboard-price-list-value-text {
+   color: var(--dashboard-price-list-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-price-list:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-price-list[hidden]
+{
+  display: none;
+}
+
+.token {
+  width:42px;
+  margin-right: 5px;
+}

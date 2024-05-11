@@ -1,0 +1,34 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-watch-list .dashboard-watch-list-value-text {
+   color: var(--dashboard-watch-list-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-watch-list:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-watch-list{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-watch-list[hidden]
+{
+  display: none;
+}
+.profit-above-goal {
+  background-color: green;
+  color: white; 
+}
+.in-profit {
+  background-color: black;
+  color: white;
+}
+.at-a-loss {
+  background-color: red;
+  color: white;
+}

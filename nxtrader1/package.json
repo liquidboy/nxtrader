@@ -1,0 +1,29 @@
+{
+  "name": "nxtrader",
+  "version": "1.0.0",
+  "description": "An Oracle JavaScript Extension Toolkit(JET) web app",
+  "dependencies": {
+    "@cityofzion/neon-core": "^5.5.1",
+    "@cityofzion/neon-core-neo3": "npm:@cityofzion/neon-core@^5.5.1",
+    "@cityofzion/neon-js": "^5.5.1",
+    "@cityofzion/neon-js-neo3": "npm:@cityofzion/neon-js@^5.5.1",
+    "@oracle/oraclejet": "~15.1.0",
+    "@oracle/oraclejet-core-pack": "~15.1.0",
+    "@preact/signals": "^1.2.2",
+    "axios": "^1.6.8",
+    "bignumber.js": "^9.0.1"
+  },
+  "devDependencies": {
+    "@oracle/ojet-cli": "~15.1.0",
+    "extract-zip": "^1.7.0",
+    "fs-extra": "^8.1.0",
+    "glob": "7.2.0",
+    "typescript": "5.0.4",
+    "underscore": "^1.10.2",
+    "yargs-parser": "13.1.2"
+  },
+  "engines": {
+    "node": ">=12.21.0"
+  },
+  "private": true
+}
