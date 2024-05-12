@@ -573,7 +573,7 @@ export enum NetworkType {
   
   export const DEFAULT_N3_RPC_NETWORK: RpcNetwork[] = [
     {
-      rpcUrl: 'https://seed2.neo.org:10332',
+      rpcUrl: 'https://n3seed1.ngd.network:10332',
       name: 'N3 MAINNET',
       magicNumber: 860833102,
       explorer: 'https://neotube.io/',
