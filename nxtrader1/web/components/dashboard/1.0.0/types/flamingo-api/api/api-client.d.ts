@@ -1,0 +1,62 @@
+import { AxiosInstance } from "axios";
+export default class ApiClient {
+    api: AxiosInstance;
+    constructor();
+    getWalletWalletHistory(address: any, page: any): Promise<any>;
+    getWalletWalletLatest(address: any): Promise<any>;
+    getWalletClaimsHistory(address: any, page: any): Promise<any>;
+    getWalletClaimsLatest(address: any): Promise<any>;
+    getWalletTradeHistory(address: any, page: any): Promise<any>;
+    getWalletTradeLatest(address: any): Promise<any>;
+    getWalletLpHistory(address: any, page: any): Promise<any>;
+    getWalletLpLatest(address: any): Promise<any>;
+    getWalletStakingHistory(address: any, page: any): Promise<any>;
+    getWalletStakingLatest(address: any): Promise<any>;
+    getWalletLendHistory(address: any, page: any): Promise<any>;
+    getWalletLendLatest(address: any): Promise<any>;
+    getWalletTransferHistory(address: any, page: any): Promise<any>;
+    getWalletTransferLatest(address: any): Promise<any>;
+    getFlamingoLivedataPricesLatest(): Promise<any>;
+    getFlamingoLivedataPricesFromblock(blocknumber: any): Promise<any>;
+    getFlamingoLivedataPricesFromdatetime({ year, month, day, hour, minute }: {
+        year: any;
+        month: any;
+        day: any;
+        hour: any;
+        minute: any;
+    }): Promise<any>;
+    getFlamingoLivedataPricesFromtimestamp(timestamp: any): Promise<any>;
+    getFlamingoLivedataFiatexchangerate(pair: any): Promise<any>;
+    getFlamingoLivedataClaimsHistory(page: any): Promise<any>;
+    getFlamingoLivedataClaimsLatest(): Promise<any>;
+    getFlamingoLivedataTradeHistory(page: any): Promise<any>;
+    getFlamingoLivedataTradeLatest(): Promise<any>;
+    getFlamingoLivedataLpHistory(page: any): Promise<any>;
+    getFlamingoLivedataLpLatest(): Promise<any>;
+    getFlamingoLivedataStakingHistory(page: any): Promise<any>;
+    getFlamingoLivedataStakingLatest(): Promise<any>;
+    getFlamingoLivedataLendHistory(page: any): Promise<any>;
+    getFlamingoLivedataLendLatest(): Promise<any>;
+    getFlamingoLivedataTransferHistory(page: any): Promise<any>;
+    getFlamingoLivedataTransferLatest(): Promise<any>;
+    getFlamingoAnalyticsMonthhistory(collection: any, { year, month }: {
+        year: any;
+        month: any;
+    }): Promise<any>;
+    getFlamingoAnalyticsMonthlatest(collection: any): Promise<any>;
+    getFlamingoAnalyticsDailyhistory(collection: any, { year, month, day }: {
+        year: any;
+        month: any;
+        day: any;
+    }): Promise<any>;
+    getFlamingoAnalyticsDailylatest(collection: any): Promise<any>;
+    getFlamingoAnalyticsRolling30days(collection: any): Promise<any>;
+    getFlamingoAnalyticsFlamingoTotalsupply(): Promise<any>;
+    getFlamingoAnalyticsFlamingoUsdvaluelocked(): Promise<any>;
+    getNeoBlock(index: any, flamingoData: any): Promise<any>;
+    getNeoBlockLatest(flamingoData: any): Promise<any>;
+    getNeoBlocksHistory(page: any, flamingoData: any): Promise<any>;
+    getNeoBlocksLatest(flamingoData: any): Promise<any>;
+    getNeoTransaction(txHash: any): Promise<any>;
+    fetchData(endpoint: any, params?: {}): Promise<any>;
+}

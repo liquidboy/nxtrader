@@ -1,0 +1,2 @@
+define(['exports', '../../UNSAFE_Theme', '../../utils-a63364c4', '../../Common/themes/themeContract.css'], (function(e,S,s,o){"use strict";const C=`${S.DARK_CLASS} ${S.INVERT_CLASS}`,_={colorScheme:({colorScheme:e})=>void 0===e?{}:{class:`${"dark"===e?C:S.LIGHT_CLASS} ${S.COLORSCHEME_DEPENDENT_CLASS}`},scale:({scale:e})=>void 0===e?{}:{class:`${"sm"===e?S.SCALE_SM_CLASS:"md"===e?S.SCALE_MD_CLASS:S.SCALE_LG_CLASS} ${S.SCALE_DEPENDENT_CLASS}`}};e.themeInterpolations=_,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=theme.js.map

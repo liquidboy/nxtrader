@@ -1,0 +1,23 @@
+import { h } from "preact";
+import "css!dashboard/wallet-manager/wallet-manager-styles.css";
+import "ojs/ojbutton";
+import "ojs/ojactioncard";
+import "ojs/ojcolorspectrum";
+import "ojs/ojlistview";
+import "ojs/ojlistitemlayout";
+import "ojs/ojinputtext";
+import "ojs/ojbutton";
+import "ojs/ojformlayout";
+import "ojs/ojvalidationgroup";
+import "ojs/ojinputnumber";
+import "ojs/ojselectcombobox";
+type Props = Readonly<{
+    tryCreate: () => void;
+    tryUpdate: () => void;
+    clear: () => void;
+    close: () => void;
+    showAddWallet: () => void;
+    refreshAllWalletBalances: () => void;
+}>;
+export declare function WalletEditor({ tryCreate, tryUpdate, clear, close, showAddWallet, refreshAllWalletBalances }: Props): h.JSX.Element;
+export {};

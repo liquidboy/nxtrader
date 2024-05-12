@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-notifications-layer .dashboard-notifications-layer-value-text {
+   color: var(--dashboard-notifications-layer-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-notifications-layer:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-notifications-layer{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-notifications-layer[hidden]
+{
+  display: none;
+}

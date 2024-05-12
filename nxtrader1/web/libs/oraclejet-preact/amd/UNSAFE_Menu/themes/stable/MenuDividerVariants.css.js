@@ -1,0 +1,2 @@
+define(['exports', 'css!./../../../MenuDividerStyles.styles.css', '../../../vanilla-extract-recipes-createRuntimeFn.esm-b2980d22'], (function(e,t,a){"use strict";var s=a.createRuntimeFn({defaultClassName:"MenuDividerStyles_baseStyle__qezqcw0",variantClassNames:{},defaultVariants:{},compoundVariants:[]});e.multiVariantStyles=s,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=MenuDividerVariants.css.js.map

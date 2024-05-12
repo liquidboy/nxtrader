@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-ratio-list .dashboard-ratio-list-value-text {
+   color: var(--dashboard-ratio-list-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-ratio-list:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-ratio-list{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-ratio-list[hidden]
+{
+  display: none;
+}

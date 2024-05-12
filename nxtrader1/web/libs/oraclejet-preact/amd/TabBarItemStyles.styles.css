@@ -1,0 +1,16 @@
+.TabBarItemStyles_tabBarItemBase__1ut250a0 {
+  color: var(--labelColor__1j8m5ay0);
+  cursor: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-cursor-clickable);
+  box-sizing: border-box;
+  display: flex;
+  outline-style: none;
+}
+.TabBarItemStyles_tabBarItemStartContent__1ut250a1 {
+  font-size: var(--iconSize__1j8m5ay2);
+  display: inline-flex;
+}
+.TabBarItemStyles_tabBarItemEndContent__1ut250a2 {
+  color: var(--labelColor__1j8m5ay0);
+  font-size: var(--iconSize__1j8m5ay2);
+  display: inline-flex;
+}

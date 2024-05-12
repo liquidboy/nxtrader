@@ -1,0 +1,18 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "jetVersion": "^15.1.9",
+  "type": "pack",
+  "displayName": "A user friendly, translatable name of the pack.",
+  "description": "A translatable high-level description for the pack.",
+  "dependencies": {
+    "dashboard-wallet-manager": "1.0.0",
+    "dashboard-price-list": "1.0.0",
+    "dashboard-ratio-list": "1.0.0",
+    "dashboard-notifications-layer": "1.0.0",
+    "dashboard-bot-maintainer": "1.0.0",
+    "dashboard-flamingo-api": "1.0.0",
+    "dashboard-wallet-peek": "1.0.0",
+    "dashboard-watch-list": "1.0.0"
+  }
+}

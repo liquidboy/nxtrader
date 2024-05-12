@@ -1,0 +1,2 @@
+define(['exports', 'preact/hooks'], (function(s,e){"use strict";s.useFormFieldContextProps=function({hasValue:s,isDisabled:i,isFocused:o,isInputFocused:u,isLoading:a,isReadonly:d,value:n}){return e.useMemo((()=>d?{hasValue:s,isFocused:o,isInputFocused:u,isLoading:a,isReadonly:!0}:i?{hasValue:s,isDisabled:!0,isLoading:a}:{hasValue:s,isFocused:o,isInputFocused:u,isLoading:a}),[s,i,o,u,a,d,n])},Object.defineProperty(s,"__esModule",{value:!0})}));
+//# sourceMappingURL=UNSAFE_useFormFieldContextProps.js.map

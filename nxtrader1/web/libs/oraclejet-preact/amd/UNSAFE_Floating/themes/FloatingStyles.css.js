@@ -1,0 +1,2 @@
+define(['exports', 'css!./../../FloatingStyles.styles.css'], (function(t,e){"use strict";t.baseStyle="FloatingStyles_baseStyle__1h7j7623",t.floatingStyle="FloatingStyles_floatingStyle__1h7j7620",t.floatingVisibilityStyles={visible:"FloatingStyles_floatingVisibilityStyles_visible__1h7j7621",hidden:"FloatingStyles_floatingVisibilityStyles_hidden__1h7j7622"},t.styles={baseStyle:"FloatingStyles_baseStyle__1h7j7623"},t.variants={},Object.defineProperty(t,"__esModule",{value:!0})}));
+//# sourceMappingURL=FloatingStyles.css.js.map

@@ -1,0 +1,34 @@
+.RadioStyles_radioBaseStyle__rjrvbk0 {
+  line-height: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-body-md-line-height);
+  min-height: var(--rowHeight__uwoc4u1);
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--iconToTextGap__uwoc4u2);
+}
+.RadioStyles_radioBaseStyle__rjrvbk0:focus {
+  outline: none;
+}
+.RadioStyles_radioBaseStyle__rjrvbk0:focus-visible {
+  outline: none;
+}
+.RadioStyles_valueLabelStyle__rjrvbk1 {
+  font-family: inherit;
+  font-weight: inherit;
+  padding-block-start: calc((var(--rowHeight__uwoc4u1) - var(--oj-c-EXPERIMENTAL-DO-NOT-USE-body-md-line-height) * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-body-md-font-size)) / 2);
+  padding-block-end: calc((var(--rowHeight__uwoc4u1) - var(--oj-c-EXPERIMENTAL-DO-NOT-USE-body-md-line-height) * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-body-md-font-size)) / 2);
+  font-size: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-body-md-font-size);
+}
+.RadioStyles_valueTextStyle__rjrvbk2 {
+  padding-inline-end: calc(2 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}
+.RadioStyles_radioDefaultColor__rjrvbk3 {
+  color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-text-icon-primary);
+}
+.RadioStyles_radioDisabledColor__rjrvbk4 {
+  color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-text-icon-disabled);
+}
+.RadioStyles_radioFocused__rjrvbk5 {
+  outline-style: dotted;
+  outline-width: var(--outlineWidth__uwoc4u0);
+  outline-color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-border-keyboard-focus);
+}

@@ -1,0 +1,18 @@
+.SelectMultipleMobileFieldInputStyles_base__1orjlbw0 {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  white-space: nowrap;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.SelectMultipleMobileFieldInputStyles_content__1orjlbw1 {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.SelectMultipleMobileFieldInputStyles_content__1orjlbw1::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', 'preact', 'module'], (function(e,n,t,r){"use strict";const c="_11fcu33";const i="__@@__",s=`${i}$&${i}`;e.HighlightText=function({children:e="",matchText:r=""}){return function(e,r){if(r.length>0&&e.length>0){const a=r.replace(/[.*+\-?^${}()|[\]\\]/g,"\\$&"),l=e.replace(new RegExp(a,"gi"),s).split(i).map(((e,t)=>t%2==0?e:n.jsx("span",{class:c,children:e})));return n.jsx(t.Fragment,{children:l})}return n.jsx(t.Fragment,{children:e})}(e,r)}}));
+//# sourceMappingURL=HighlightText-a25e1bac.js.map

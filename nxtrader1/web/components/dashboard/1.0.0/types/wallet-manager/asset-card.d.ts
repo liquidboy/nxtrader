@@ -1,0 +1,20 @@
+import { h } from "preact";
+import "css!dashboard/wallet-manager/wallet-manager-styles.css";
+import "ojs/ojbutton";
+import "ojs/ojactioncard";
+import "ojs/ojcolorspectrum";
+import "ojs/ojlistview";
+import "ojs/ojlistitemlayout";
+import "ojs/ojinputtext";
+import "ojs/ojbutton";
+import "ojs/ojformlayout";
+import "ojs/ojvalidationgroup";
+import { CAsset } from "./wallet-lib";
+type Props = Readonly<{
+    wassetName?: string;
+    wasset?: Array<CAsset>;
+    prices: Array<any>;
+    onCardSelected: (wallet_address: string, wasset_name: string, asset_id: string | null, sourceElementId: string) => void;
+}>;
+export declare function AssetCard({ wassetName, wasset, prices, onCardSelected }: Props): h.JSX.Element;
+export {};

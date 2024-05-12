@@ -1,0 +1,2 @@
+define(['exports', 'preact/hooks', './PRIVATE_useResizeObserver'], (function(e,o,t){"use strict";e.useSize=(e,i={box:"content-box"})=>{const[r,s]=o.useState();return t.useResizeObserver(e,(e=>{const o="border-box"===i.box?e.borderBoxSize:e.contentBoxSize,t=o[0].inlineSize,r=o[0].blockSize;s({width:t,height:r})}),i),r},Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=PRIVATE_useSize.js.map

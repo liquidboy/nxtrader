@@ -1,0 +1,109 @@
+.LegendStyles_legendStyle__xn8e5i0 {
+  overflow-y: auto;
+  width: max-content;
+  max-width: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
+  outline-width: 0px;
+}
+.LegendStyles_sectionalLegendBaseStyles__xn8e5i1 {
+  overflow-y: auto;
+  width: max-content;
+  max-width: 100%;
+  max-height: 100%;
+  outline-width: 0px;
+}
+.LegendStyles_baseLegendStyles__xn8e5i2 {
+  display: grid;
+  padding-top: calc(0.75 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  padding-bottom: calc(0.75 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}
+.LegendStyles_baseLegendHorizontal__xn8e5i3 {
+  grid-auto-flow: column;
+  width: max-content;
+}
+.LegendStyles_baseLegendVertical__xn8e5i4 {
+  grid-auto-flow: row;
+  max-width: 100%;
+}
+.LegendStyles_baseLegendVerticalItem__xn8e5i5 {
+  max-width: 100%;
+  width: max-content;
+}
+.LegendStyles_baseLegendPaddingBottom__xn8e5i6 {
+  padding-bottom: calc(0.4 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}
+.LegendStyles_baseLegendPaddingTop__xn8e5i7 {
+  padding-top: calc(0.4 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}
+.LegendStyles_baseLegendPaddingEnd__xn8e5i8 {
+  padding-inline-end: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x));
+}
+.LegendStyles_legendItemBaseStyle__xn8e5i9 {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  box-sizing: border-box;
+  max-width: max-content;
+}
+.LegendStyles_legendItemIsCurrent__xn8e5ia {
+  cursor: pointer;
+  background-color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-overlay-hover);
+  border-radius: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-border-radius-md);
+}
+.LegendStyles_legendItemOpacity__xn8e5ib {
+  opacity: 0.35;
+}
+.LegendStyles_legendItemFocusRing__xn8e5ic {
+  outline-style: dotted;
+  outline-width: 1px;
+  outline-color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-border-keyboard-focus);
+  outline-offset: -1px;
+}
+.LegendStyles_imageMarkerStyle__xn8e5id {
+  width: 100%;
+  height: 100%;
+}
+.LegendStyles_legendSymbolBaseStyle__xn8e5ie {
+  position: relative;
+  pointer-events: none;
+  flex-shrink: 0;
+  height: calc(2.5 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  width: calc(2.5 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  margin-bottom: calc(0.85 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  margin-inline-end: calc(0.75 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  margin-inline-start: calc(0.75 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  margin-top: calc(0.85 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}
+.LegendStyles_legendTextBaseStyle__xn8e5if {
+  color: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-text-icon-primary);
+  pointer-events: none;
+  padding-inline-start: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x));
+  padding-inline-end: calc(0.5 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  max-width: 100%;
+  width: max-content;
+  font-size: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-label-sm-font-size);
+  min-width: 0;
+  line-height: normal;
+  display: inherit;
+}
+.LegendStyles_legendTextTitle__xn8e5ig {
+  font-weight: 600;
+  text-align: right;
+  padding-top: calc(0.75 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  padding-bottom: calc(1.5 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  padding-inline-end: calc(2 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+  padding-inline-start: calc(0.75 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x)));
+}
+.LegendStyles_legendTitleStartAlign__xn8e5ih {
+  align-self: flex-start;
+}
+.LegendStyles_legendTitleCenterAlign__xn8e5ii {
+  align-self: center;
+}
+.LegendStyles_legendTitleEndAlign__xn8e5ij {
+  align-self: flex-end;
+}
+.LegendStyles_svgSymbolBaseStyle__xn8e5ik {
+  position: absolute;
+}

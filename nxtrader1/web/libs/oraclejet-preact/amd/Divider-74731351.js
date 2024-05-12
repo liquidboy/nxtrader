@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', './utils/UNSAFE_classNames', './UNSAFE_Divider/themes/DividerStyles.css', './classNames-111575ef'], (function(s,e,i,t,a){"use strict";s.Divider=function({orientation:s="horizontal"}){const i=t.multiVariantStyles({orientation:s}),r=a.classNames([i,t.styles.dividerBase]);return e.jsx("span",{class:r,role:"separator","aria-orientation":s})}}));
+//# sourceMappingURL=Divider-74731351.js.map

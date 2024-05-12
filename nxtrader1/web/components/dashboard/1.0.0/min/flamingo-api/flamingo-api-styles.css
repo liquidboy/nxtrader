@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-flamingo-api .dashboard-flamingo-api-value-text {
+   color: var(--dashboard-flamingo-api-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-flamingo-api:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-flamingo-api{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-flamingo-api[hidden]
+{
+  display: none;
+}

@@ -1,0 +1,21 @@
+.NavigationListItemStyles_baseStyle__13sgy010 {
+  border-width: 0;
+  border-inline-start-width: var(--borderWidth__1497t563);
+  border-style: solid;
+  min-height: var(--minHeight__1497t562);
+  border-color: transparent;
+  cursor: var(--oj-c-EXPERIMENTAL-DO-NOT-USE-cursor-clickable);
+  box-sizing: border-box;
+  outline-style: none;
+  display: flex;
+  color: var(--labelColor__1497t565);
+  text-decoration-line: none;
+  padding-inline-start: calc(var(--paddingHorizontal__1497t564) - var(--borderWidth__1497t563));
+  padding-inline-end: var(--paddingHorizontal__1497t564);
+}
+.NavigationListItemStyles_labelContainerClasses__13sgy011 {
+  padding: calc(0.75 * var(--oj-c-EXPERIMENTAL-DO-NOT-USE-size-units, var(--oj-core-spacing-1x))) 0;
+  font-size: var(--fontSize__1497t560);
+  font-weight: var(--fontWeight__1497t561);
+  line-height: normal;
+}

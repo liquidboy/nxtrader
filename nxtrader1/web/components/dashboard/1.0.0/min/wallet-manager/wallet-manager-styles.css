@@ -1,0 +1,68 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-wallet-manager .dashboard-wallet-manager-value-text {
+   color: var(--dashboard-wallet-manager-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-wallet-manager:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-wallet-manager{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-wallet-manager[hidden]
+{
+  display: none;
+}
+.card-asset {
+  width: 30rem;
+}
+.card-wasset {
+  text-align: left;
+  width: 8rem;
+}
+.card-token {
+  width:40px;
+  margin-right: 5px;
+}
+.card-small-token {
+  width:20px;
+  margin-right: 5px;
+}
+
+.oj-popup-content {
+  padding: 0 !important;
+}
+
+.tag-item {
+  background-color: gray;
+  padding-left: 3px;
+  padding-right: 3px;
+  color: white;
+  margin-right: 2px;
+}
+
+.drawerEditor{
+  width: 550px;
+}
+
+.drawerAssetTransactions{
+  width: 550px;
+}
+
+#lilFooter {
+  --oj-core-gutter-start: 7px !important;
+}
+
+.clipboard-action {
+  cursor:pointer;
+}
+.tx-address {
+  font-weight: bold;
+}

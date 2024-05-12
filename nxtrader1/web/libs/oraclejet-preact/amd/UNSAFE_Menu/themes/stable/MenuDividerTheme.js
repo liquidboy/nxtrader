@@ -1,0 +1,2 @@
+define(['exports', '../MenuDividerStyles.css', './MenuDividerBaseTheme.css', './MenuDividerVariants.css', 'css!./../../../MenuDividerStyles.styles.css', 'module', '../../../vanilla-extract-recipes-createRuntimeFn.esm-b2980d22'], (function(e,s,t,i,a,n,r){"use strict";const l={baseTheme:t.baseTheme,multiVariantStyles:i.multiVariantStyles,variants:s.variants,styles:s.styles};e.MenuDividerStableTheme=l,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=MenuDividerTheme.js.map

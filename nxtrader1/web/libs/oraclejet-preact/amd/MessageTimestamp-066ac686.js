@@ -1,0 +1,2 @@
+define(['exports', 'preact/jsx-runtime', './utils/UNSAFE_classNames', './PRIVATE_Message/themes/MessageStyles.css', './MessageFormattingUtils-7d648a95', './classNames-111575ef'], (function(s,e,a,t,m,n){"use strict";s.MessageTimestamp=function({value:s,variant:a="banner"}){const i=n.classNames(["banner"===a&&"oj-c-messagebanner-timestamp",t.messageTimestampStyles[a]]),r=m.formatTimestamp(s);return e.jsx("div",{class:i,children:r})}}));
+//# sourceMappingURL=MessageTimestamp-066ac686.js.map

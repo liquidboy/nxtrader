@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-bot-maintainer .dashboard-bot-maintainer-value-text {
+   color: var(--dashboard-bot-maintainer-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-bot-maintainer:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-bot-maintainer{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-bot-maintainer[hidden]
+{
+  display: none;
+}
