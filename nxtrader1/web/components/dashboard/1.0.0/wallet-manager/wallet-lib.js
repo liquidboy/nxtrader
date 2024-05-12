@@ -416,7 +416,7 @@ define(["require", "exports", "@cityofzion/neon-core", "@cityofzion/neon-core-ne
     ];
     exports.DEFAULT_N3_RPC_NETWORK = [
         {
-            rpcUrl: 'http://seed2.neo.org:10332',
+            rpcUrl: 'https://seed2.neo.org:10332',
             name: 'N3 MAINNET',
             magicNumber: 860833102,
             explorer: 'https://neotube.io/',
