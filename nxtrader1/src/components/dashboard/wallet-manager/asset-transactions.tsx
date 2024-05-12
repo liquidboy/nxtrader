@@ -127,7 +127,7 @@ export function AssetTransactions(
                   </div>
                   {item.data.value>0?
                     <div class="oj-flex-item oj-flex">
-                      <img src="styles/images/FUSDT.svg" class="card-small-token" />
+                      <img src="styles/images/fUSDT.svg" class="card-small-token" />
                       <div>{ usdNumberConverter.format(parseFloat(item.data.value) * unitPriceInUsd) }</div>
                   </div>:<></>}
                   <div class="oj-sm-flex-initial oj-flex-item oj-flex oj-text-secondary-color">

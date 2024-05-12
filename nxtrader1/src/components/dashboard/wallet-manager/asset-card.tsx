@@ -83,7 +83,7 @@ export function AssetCard(
         </div>
         <div class="oj-flex-item"></div>
         <div class="oj-sm-flex-initial oj-flex-item oj-flex oj-text-secondary-color oj-typography-body-sm oj-sm-padding-4x-top">
-          <img src="styles/images/FUSDT.svg" class="card-small-token" />
+          <img src="styles/images/fUSDT.svg" class="card-small-token" />
           <span class="oj-sm-margin-2x-top">{usdNumberConverter.format(totalPriceInFUSDT??0)}</span>
         </div>
       </div>

@@ -91,7 +91,7 @@ export function AssetWatchlistEditor({ hidden, navigateBack }: Props){
                     <div class="oj-flex-item"></div>
                     {seletedTransaction.value?.transaction.value>0?
                         <div class="oj-sm-flex-initial oj-flex-item oj-flex">
-                            <img src="styles/images/FUSDT.svg" class="card-small-token" />
+                            <img src="styles/images/fUSDT.svg" class="card-small-token" />
                             <div>{ usdNumberConverter.format(parseFloat(seletedTransaction.value?.transaction.value) * unitPriceInUsd) }</div>
                         </div>:<></>}
                 </div>

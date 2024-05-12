@@ -115,7 +115,7 @@ export function WalletList(
             })}
           </div>
           <div slot="metadata" class="oj-flex">
-            <img src="styles/images/FUSDT.svg" style={{width: "25px"}}/>
+            <img src="styles/images/fUSDT.svg" style={{width: "25px"}}/>
             <span class="oj-sm-padding-2x-start oj-sm-padding-2x-end oj-sm-padding-6x-top" style={{verticalAlign: "super"}}>{usdNumberConverter.format(runningWalletTotal??0)}</span>
             <oj-status-meter-gauge
                 labelled-by="readOnly"
@@ -157,7 +157,7 @@ export function WalletList(
             <WalletListFilter></WalletListFilter>
           </div>
           <div slot="metadata" class="oj-flex">
-            <img src="styles/images/FUSDT.svg" style={{width: "25px"}}/>
+            <img src="styles/images/fUSDT.svg" style={{width: "25px"}}/>
             <span class="oj-sm-padding-2x-start oj-sm-padding-2x-end oj-sm-padding-6x-top" style={{verticalAlign: "super"}}>{usdNumberConverter.format(md.runningWalletsTotalInUsd??0)}</span>
             <oj-status-meter-gauge
                 labelled-by="readOnly"
