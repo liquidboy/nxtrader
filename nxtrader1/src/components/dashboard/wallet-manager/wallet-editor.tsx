@@ -81,6 +81,7 @@ export function WalletEditor(
             id="wt"
             class="oj-form-control-max-width-md"
             labelEdge="none"
+            required={true}
             placeholder="keywords to tag this wallet with">
               <oj-option value="bot">bot</oj-option>
               <oj-option value="fees">fees</oj-option>
