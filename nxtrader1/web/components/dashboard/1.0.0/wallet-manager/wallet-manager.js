@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact/signals", "ojs/ojcolor", "./asset-card", "./wallet-lib", "./wallet-list", "./wallet-charts", "./wallet-editor", "dashboard/price-list/price-list", "dashboard/notifications-layer/notifications-layer", "ojs/ojcolor", "./asset-manager", "dashboard/flamingo-api/indexdb/transactionsDbService", "css!dashboard/wallet-manager/wallet-manager-styles.css", "ojs/ojchart", "ojs/ojactioncard", "ojs/ojcolorspectrum", "ojs/ojlistview", "ojs/ojlistitemlayout", "ojs/ojinputtext", "ojs/ojbutton", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojpopup", "ojs/ojdrawerpopup"], function (require, exports, jsx_runtime_1, ojvcomponent_1, signals_1, ojcolor_1, asset_card_1, wallet_lib_1, wallet_list_1, wallet_charts_1, wallet_editor_1, price_list_1, notifications_layer_1, Color, asset_manager_1, transactionsDbService_1) {
+define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact/signals", "ojs/ojcolor", "./asset-card", "./wallet-lib", "./wallet-list", "./wallet-charts", "./wallet-editor", "dashboard/price-list/price-list", "dashboard/notifications-layer/notifications-layer", "ojs/ojcolor", "./asset-manager", "dashboard/flamingo-api/indexdb/transactionsDbService", "./form-elements", "css!dashboard/wallet-manager/wallet-manager-styles.css", "ojs/ojchart", "ojs/ojactioncard", "ojs/ojcolorspectrum", "ojs/ojlistview", "ojs/ojlistitemlayout", "ojs/ojinputtext", "ojs/ojbutton", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojpopup", "ojs/ojdrawerpopup"], function (require, exports, jsx_runtime_1, ojvcomponent_1, signals_1, ojcolor_1, asset_card_1, wallet_lib_1, wallet_list_1, wallet_charts_1, wallet_editor_1, price_list_1, notifications_layer_1, Color, asset_manager_1, transactionsDbService_1, form_elements_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getWallet = exports.WalletManager = exports.wallets = exports.walletsRaw = exports.selectedTags = exports.tagsAsArray = exports.tags = void 0;
@@ -129,10 +129,10 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             fe.wn.value = "";
             fe.wpk.value = "";
             fe.wk.value = wallet_lib_1.KEY;
-            fe.bcr.hidden = false;
-            fe.bclr.hidden = false;
-            fe.bu.hidden = true;
-            fe.bclo.hidden = false;
+            form_elements_1.bcrHidden.value = false;
+            form_elements_1.bclrHidden.value = false;
+            form_elements_1.buHidden.value = true;
+            form_elements_1.bcloHidden.value = false;
             fe.wcol.value = ojcolor_1.BLACK;
             fe.wg.value = 0;
             fe.wt.value = [];
@@ -319,10 +319,10 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                 fe.wpk.value = w.publicKey ? w.publicKey : w3._WIF;
                 fe.wg.value = w.goal;
                 fe.wcol.value = w.walletColor ? new Color(w.walletColor) : ojcolor_1.BLACK;
-                fe.bcr.hidden = true;
-                fe.bclr.hidden = true;
-                fe.bu.hidden = false;
-                fe.bclo.hidden = false;
+                form_elements_1.bcrHidden.value = true;
+                form_elements_1.bclrHidden.value = true;
+                form_elements_1.buHidden.value = false;
+                form_elements_1.bcloHidden.value = false;
                 fe.baw.hidden = true;
                 fe.wt.value = w.tags;
                 fe.de.opened = true;

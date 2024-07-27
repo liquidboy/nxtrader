@@ -33,6 +33,7 @@ import { BLACK } from "ojs/ojcolor";
 import { WalletJSON } from "@cityofzion/neon-core/lib/wallet";
 import { CAsset, CWallet, KEY } from "./wallet-lib";
 import { ActionCardElement } from "ojs/ojactioncard";
+import { bcrHidden, buHidden, bcloHidden, bclrHidden } from "./form-elements";
 //import ArrayDataProvider = require("ojs/ojarraydataprovider");
 
 
@@ -48,7 +49,7 @@ type Props = Readonly<{
 export function WalletEditor(
   { tryCreate, tryUpdate, clear, close, showAddWallet, refreshAllWalletBalances }: Props
 ) {
-
+  console.log("wallet-editor > init");
   const groupValid = signal<'valid' | 'pending' | 'invalidHidden' | 'invalidShown' | undefined>(undefined);
 
   const eatNonNumbers = (event: KeyboardEvent) => {
@@ -89,10 +90,10 @@ export function WalletEditor(
 
 
           <div className="oj-flex">
-            <oj-button id="butCreate" onojAction={tryCreate} chroming="callToAction">Create</oj-button>
-            <oj-button id="butUpdate" onojAction={tryUpdate} hidden chroming="callToAction">Update</oj-button>
-            <oj-button id="butClear" onojAction={clear} class="oj-sm-padding-2x-start">Clear</oj-button>
-            <oj-button id="butClose" onojAction={close} hidden class="oj-sm-padding-2x-start">Close</oj-button>
+            <oj-button id="butCreate" onojAction={tryCreate} chroming="callToAction" hidden={bcrHidden.value}>Create</oj-button>
+            <oj-button id="butUpdate" onojAction={tryUpdate} chroming="callToAction" hidden={buHidden.value}>Update</oj-button>
+            <oj-button id="butClear" onojAction={clear} class="oj-sm-padding-2x-start" hidden={bcrHidden.value}>Clear</oj-button>
+            <oj-button id="butClose" onojAction={close} class="oj-sm-padding-2x-start" hidden={bcloHidden.value}>Close</oj-button>
           </div>
         </oj-form-layout>
       </oj-validation-group>

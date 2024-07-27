@@ -1,0 +1,18 @@
+import "css!dashboard/wallet-manager/wallet-manager-styles.css";
+import { Signal } from "@preact/signals";
+import "ojs/ojchart";
+import "ojs/ojactioncard";
+import "ojs/ojcolorspectrum";
+import "ojs/ojlistview";
+import "ojs/ojlistitemlayout";
+import "ojs/ojinputtext";
+import "ojs/ojbutton";
+import "ojs/ojformlayout";
+import "ojs/ojvalidationgroup";
+import "ojs/ojpopup";
+import "ojs/ojdrawerpopup";
+export declare const bcrHidden: Signal<boolean>;
+export declare const buHidden: Signal<boolean>;
+export declare const bclrHidden: Signal<boolean>;
+export declare const bcloHidden: Signal<boolean>;
+export declare const brb: Signal<boolean>;
