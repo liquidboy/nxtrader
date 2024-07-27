@@ -81,17 +81,17 @@ export const wallets = computed(()=>{
   return found;
 });
 
-
-function updateWallets(postUpdateWallets? : () => void) {
+function updateWallets(force?: boolean, postUpdateWallets? : () => void) {
   const existingWallets = loadWalletsFromStorage();
   console.log("wallet-manager > updateWallets");
-  if(existingWallets && existingWallets.length > 0) {
+  if(force || existingWallets && existingWallets.length > 0) {
     walletsRaw.value = existingWallets;
     if(postUpdateWallets) postUpdateWallets();
   }
 }
-function updateWalletsDelayed() {
-  setTimeout(updateWallets, 1000);
+function updateWalletsDelayed(interval: number = 1000) {
+  setTimeout(updateWallets, interval);
+  //updateWallets(true);
 }
 
 /**
@@ -120,7 +120,7 @@ function WalletManagerImpl() {
       console.log("wallet-manager > useSignalEffect > prices changed");
       //if(wallets && wallets.peek().length=== 0) {
         console.log("wallet-manager > useSignalEffect > wallets changed");
-        updateWallets(()=>{
+        updateWallets(false, ()=>{
           console.log("wallet-manager > useSignalEffect > updateWallets > callback");
           refreshAllWalletBalances();
           refreshLastUpdatedTime(Date.now());
@@ -156,6 +156,7 @@ function WalletManagerImpl() {
         close();
         //updateWallets();
         updateWalletsDelayed();
+        brbHidden.value = false;
       }
     }
   }
@@ -184,7 +185,8 @@ function WalletManagerImpl() {
     };
     createNotification(newMessage);
 
-    updateWallets();
+    ////await refreshAllWalletBalances();
+    updateWallets(true);
   }
 
   function clear() {

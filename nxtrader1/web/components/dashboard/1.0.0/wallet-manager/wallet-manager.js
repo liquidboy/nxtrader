@@ -35,17 +35,17 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
         console.log("wallet-manager > wallets > computed");
         return found;
     });
-    function updateWallets(postUpdateWallets) {
+    function updateWallets(force, postUpdateWallets) {
         const existingWallets = (0, wallet_lib_1.loadWalletsFromStorage)();
         console.log("wallet-manager > updateWallets");
-        if (existingWallets && existingWallets.length > 0) {
+        if (force || existingWallets && existingWallets.length > 0) {
             exports.walletsRaw.value = existingWallets;
             if (postUpdateWallets)
                 postUpdateWallets();
         }
     }
-    function updateWalletsDelayed() {
-        setTimeout(updateWallets, 1000);
+    function updateWalletsDelayed(interval = 1000) {
+        setTimeout(updateWallets, interval);
     }
     function WalletManagerImpl() {
         const walletsMetadata = (0, signals_1.useSignal)(new Map());
@@ -63,12 +63,12 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             if (price_list_1.prices.value && price_list_1.prices.value.length > 0) {
                 console.log("wallet-manager > useSignalEffect > prices changed");
                 console.log("wallet-manager > useSignalEffect > wallets changed");
-                updateWallets(() => {
+                updateWallets(false, () => {
                     console.log("wallet-manager > useSignalEffect > updateWallets > callback");
                     refreshAllWalletBalances();
                     (0, wallet_list_1.refreshLastUpdatedTime)(Date.now());
                     const fe = getFormElements();
-                    fe.brb.hidden = exports.wallets.value.length === 0;
+                    form_elements_1.brbHidden.value = exports.wallets.value.length === 0;
                 });
             }
         });
@@ -80,17 +80,11 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             const wpk = document.getElementById('wpk');
             const wk = document.getElementById('wk');
             const tracker = document.getElementById('tracker');
-            const baw = document.getElementById('butAddWallet');
-            const bcr = document.getElementById('butCreate');
-            const bu = document.getElementById('butUpdate');
-            const bclr = document.getElementById('butClear');
-            const bclo = document.getElementById('butClose');
-            const brb = document.getElementById('butRefreshBalances');
             const we = document.getElementById('walletEditor');
             const wt = document.getElementById('wt');
             const de = document.getElementById('de');
             const dat = document.getElementById('dat');
-            return { wcol, wn, wpk, wk, tracker, lvw, baw, bcr, bu, bclr, bclo, brb, we, wg, wt, de, dat };
+            return { wcol, wn, wpk, wk, tracker, lvw, we, wg, wt, de, dat };
         }
         function tryCreate() {
             var _a;
@@ -100,6 +94,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     (0, wallet_lib_1.addWalletToStorage)(fe.wn.value, fe.wpk.value, fe.wk.value, fe.wg.value, (_a = fe.wcol.value) === null || _a === void 0 ? void 0 : _a.toString(), fe.wt.value);
                     close();
                     updateWalletsDelayed();
+                    form_elements_1.brbHidden.value = false;
                 }
             }
         }
@@ -122,7 +117,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                 autoTimeout: 3000,
             };
             (0, notifications_layer_1.createNotification)(newMessage);
-            updateWallets();
+            updateWallets(true);
         }
         function clear() {
             const fe = getFormElements();
@@ -153,7 +148,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             const fe = getFormElements();
             clear();
             fe.we.hidden = true;
-            fe.baw.hidden = false;
+            form_elements_1.bawHidden.value = false;
             fe.de.opened = false;
             (0, price_list_1.startPriceRefreshTimer)();
         }
@@ -174,7 +169,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                 if (event.detail.items === null) {
                     clear();
                     fe.we.hidden = true;
-                    fe.baw.hidden = false;
+                    form_elements_1.bawHidden.value = false;
                     return;
                 }
             });
@@ -323,7 +318,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                 form_elements_1.bclrHidden.value = true;
                 form_elements_1.buHidden.value = false;
                 form_elements_1.bcloHidden.value = false;
-                fe.baw.hidden = true;
+                form_elements_1.bawHidden.value = true;
                 fe.wt.value = w.tags;
                 fe.de.opened = true;
                 (0, price_list_1.stopPriceRefreshTimer)();
@@ -333,7 +328,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             clear();
             const fe = getFormElements();
             fe.we.hidden = false;
-            fe.baw.hidden = true;
+            form_elements_1.bawHidden.value = true;
             fe.de.opened = true;
             (0, price_list_1.stopPriceRefreshTimer)();
         }
