@@ -36,6 +36,7 @@ import * as Color from "ojs/ojcolor";
 import { isAutoPriceRefreshRunning, startPriceRefreshTimer, stopPriceRefreshTimer } from "dashboard/price-list/price-list";
 import { tags } from "./wallet-manager";
 import { WalletListFilter } from "./wallet-list-filter";
+import { bawHidden, brbHidden } from "./form-elements";
 
 const refreshEvery10Seconds = 10000;
 let lastUpdatedTime  = signal<number | undefined>(undefined); 
@@ -191,13 +192,13 @@ export function WalletList(
 
   return (<div>
     <div className="oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end">
-      <oj-button id="butAddWallet" display="all" onojAction={showAddWallet} class="oj-button-sm">
+      <oj-button id="butAddWallet" display="all" onojAction={showAddWallet} class="oj-button-sm" hidden={bawHidden.value}>
         <span slot="startIcon" class="oj-ux-ico-plus"></span>
         Add Wallet
       </oj-button>
       <span className="oj-flex-item"></span>
       <span class="oj-sm-padding-2x-end oj-sm-padding-4x-top oj-text-color-secondary" >last updated {lastUpdatedTimeLabel} second(s) ago</span>
-      <oj-button id="butRefreshBalances" display="icons" hidden onojAction={refreshAllWalletBalances} class="oj-button-sm oj-sm-flex-initial oj-flex-item  oj-sm-margin-2x-end">
+      <oj-button id="butRefreshBalances" display="icons" hidden={brbHidden.value} onojAction={refreshAllWalletBalances} class="oj-button-sm oj-sm-flex-initial oj-flex-item  oj-sm-margin-2x-end">
         <span slot="startIcon" class="oj-ux-ico-refresh"></span>
         Refresh wallet balances
       </oj-button>

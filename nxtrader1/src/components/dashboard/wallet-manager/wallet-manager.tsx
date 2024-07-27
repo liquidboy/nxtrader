@@ -46,7 +46,7 @@ import * as Color from "ojs/ojcolor";
 import { ojComboboxMany } from "ojs/ojselectcombobox";
 import { AssetManager, showAssetManagerRoute } from "./asset-manager";
 import transactionsDbService from "dashboard/flamingo-api/indexdb/transactionsDbService";
-import { bcloHidden, bclrHidden, bcrHidden, buHidden } from "./form-elements";
+import { bawHidden, bcloHidden, bclrHidden, bcrHidden, brbHidden, buHidden } from "./form-elements";
 
 const refreshEvery1Minute = 60000;
 let refreshIntervalId: number | undefined = undefined;
@@ -126,7 +126,7 @@ function WalletManagerImpl() {
           refreshLastUpdatedTime(Date.now());
           
           const fe = getFormElements();
-          fe.brb.hidden = wallets.value.length === 0;
+          brbHidden.value = wallets.value.length === 0;
         });
       //}
     }
@@ -140,17 +140,11 @@ function WalletManagerImpl() {
     const wpk = document.getElementById('wpk') as InputTextElement<string>;
     const wk = document.getElementById('wk') as InputTextElement<string>;
     const tracker = document.getElementById('tracker') as ojValidationGroup;
-    const baw = document.getElementById('butAddWallet') as ojButton;
-    const bcr = document.getElementById('butCreate') as ojButton;
-    const bu = document.getElementById('butUpdate') as ojButton;
-    const bclr = document.getElementById('butClear') as ojButton;
-    const bclo = document.getElementById('butClose') as ojButton;
-    const brb = document.getElementById('butRefreshBalances') as ojButton;
     const we = document.getElementById('walletEditor') as HTMLElement;
     const wt = document.getElementById('wt') as ojComboboxMany<any, any, any>;
     const de = document.getElementById('de') as DrawerPopupElement;
     const dat = document.getElementById('dat') as DrawerPopupElement;
-    return {wcol, wn, wpk, wk, tracker, lvw, baw, bcr, bu, bclr, bclo, brb, we, wg, wt, de, dat};
+    return {wcol, wn, wpk, wk, tracker, lvw, we, wg, wt, de, dat};
   }
 
   function tryCreate() {
@@ -198,13 +192,9 @@ function WalletManagerImpl() {
     fe.wn.value = "";
     fe.wpk.value = "";
     fe.wk.value = KEY;
-    //fe.bcr.hidden = false;
     bcrHidden.value = false;
-    //fe.bclr.hidden = false;
     bclrHidden.value = false;
-    //fe.bu.hidden = true;
     buHidden.value = true;
-    //fe.bclo.hidden = false;
     bcloHidden.value = false;
     fe.wcol.value = BLACK;
     fe.wg.value = 0;
@@ -228,7 +218,7 @@ function WalletManagerImpl() {
     const fe = getFormElements();
     clear();
     fe.we.hidden = true;
-    fe.baw.hidden = false;
+    bawHidden.value = false;
     fe.de.opened = false;
     startPriceRefreshTimer();
   }
@@ -249,7 +239,7 @@ function WalletManagerImpl() {
     if(event.detail.items === null) {
       clear();
       fe.we.hidden = true;
-      fe.baw.hidden = false;
+      bawHidden.value = false;
       return;
     }
 
@@ -394,15 +384,11 @@ function WalletManagerImpl() {
       fe.wpk.value = w.publicKey ? w.publicKey : w3._WIF ;
       fe.wg.value = w.goal;
       fe.wcol.value = w.walletColor ? new Color(w.walletColor) : BLACK;
-      //fe.bcr.hidden = true;
       bcrHidden.value = true;
-      //fe.bclr.hidden = true;
       bclrHidden.value = true;
-      //fe.bu.hidden = false;
       buHidden.value = false;
-      //fe.bclo.hidden = false;
       bcloHidden.value = false;
-      fe.baw.hidden = true;
+      bawHidden.value = true;
       fe.wt.value = w.tags;
       fe.de.opened = true;
       stopPriceRefreshTimer();
@@ -413,7 +399,7 @@ function WalletManagerImpl() {
     clear();
     const fe = getFormElements();
     fe.we.hidden = false;
-    fe.baw.hidden = true;
+    bawHidden.value = true;
     fe.de.opened = true;
     stopPriceRefreshTimer();
   }
