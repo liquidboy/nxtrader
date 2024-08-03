@@ -5,6 +5,7 @@ import { ExtendGlobalProps } from "ojs/ojvcomponent";
 import { h, ComponentProps, ComponentType } from "preact";
 import "css!dashboard/watch-list/watch-list-styles.css";
 import 'ojs/ojgauge';
+export declare function tryLoadTransactionsInWatchlist(): void;
 declare function WatchListImpl(): h.JSX.Element;
 export declare const WatchList: ComponentType<ExtendGlobalProps<ComponentProps<typeof WatchListImpl>>>;
 export {};

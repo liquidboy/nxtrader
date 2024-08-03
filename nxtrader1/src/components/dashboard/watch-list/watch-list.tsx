@@ -11,7 +11,7 @@ import { WatchListItem } from "./watch-list-item";
 import { deleteWatchListItem } from "dashboard/wallet-manager/asset-watchlist";
 
 const watchlist = signal([]);
-function tryLoadTransactions() {
+export function tryLoadTransactionsInWatchlist() {
   setTimeout(() => {
     transactionsDbService.getAllTransactions().then(result=>{
      watchlist.value = result.sort((x,y)=>x.value-y.value);
@@ -25,7 +25,7 @@ async function tryDeleteWatchListItem (event: any) {
   const val = event.srcElement.dataset.value;
   //console.log(id,  event.srcElement.dataset);
   await deleteWatchListItem(parseInt(id), symbol, val);
-  tryLoadTransactions();
+  tryLoadTransactionsInWatchlist();
 }
 
 /**
@@ -44,7 +44,7 @@ function WatchListImpl() {
 
   useSignalEffect(() => {
     if(prices.value && prices.value.length > 0) {
-      tryLoadTransactions();
+      tryLoadTransactionsInWatchlist();
     };
   });
 

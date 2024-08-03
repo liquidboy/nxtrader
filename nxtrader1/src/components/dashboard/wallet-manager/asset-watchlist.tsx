@@ -8,6 +8,7 @@ import { WatchListItem } from "dashboard/watch-list/watch-list-item";
 import { IntlNumberConverter } from "ojs/ojconverter-number";
 import { prices } from "dashboard/price-list/price-list";
 import { getTimeInterval } from "./asset-transactions";
+import { tryLoadTransactionsInWatchlist } from "dashboard/watch-list/watch-list";
 
 export const seletedTransaction = signal<{txDetail: any|undefined, transaction: Transaction, transactionType: "add"|"edit", watchlist: Array<StoredTransactionRecord>}|undefined>(undefined);
 
@@ -53,6 +54,7 @@ export function AssetWatchlistEditor({ hidden, navigateBack }: Props){
           autoTimeout: 2000,
         };
         createNotification(newMessage);
+        tryLoadTransactionsInWatchlist();
         navigateBack();
     };
 
@@ -68,12 +70,14 @@ export function AssetWatchlistEditor({ hidden, navigateBack }: Props){
           autoTimeout: 2000,
         };
         createNotification(newMessage);
+        tryLoadTransactionsInWatchlist();
         navigateBack();
     }
 
     const deleteFromWatchList = async () => {
         //console.log(seletedTransaction.value.transaction);
         await deleteWatchListItem(seletedTransaction.value.transaction.id, seletedTransaction.value.transaction.symbol, seletedTransaction.value.transaction.value);
+        tryLoadTransactionsInWatchlist();
         navigateBack();
     }
 
