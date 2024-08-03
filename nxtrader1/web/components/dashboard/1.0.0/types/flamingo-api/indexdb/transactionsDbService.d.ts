@@ -28,4 +28,4 @@ declare function setGeneratedArtifactVersion(version: any): void;
 declare function storeTransaction(transaction: Transaction, purchaseCostUsdt: number, goalUsdt: number): Promise<void>;
 declare function getTransactions(symbol: string): Promise<Array<StoredTransactionRecord>>;
 declare function getAllTransactions(): Promise<Array<StoredTransactionRecord>>;
-declare function deleteById(id: any): Promise<void>;
+declare function deleteById(id: number): Promise<void>;

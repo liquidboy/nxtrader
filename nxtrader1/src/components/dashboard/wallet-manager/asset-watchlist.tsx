@@ -16,6 +16,17 @@ type Props = Readonly<{
     navigateBack: ()=>void;
 }>;
 
+export const deleteWatchListItem = async (transactionId: number, transactionSymbol: string, transactionValue: any) => {
+    await transactionsDbService.deleteById(transactionId);
+    const newMessage = {
+        id: 2,
+        severity: 'none',
+        summary: `${transactionSymbol} ${transactionValue} deleted from watch list`,
+        autoTimeout: 2000,
+      };
+      createNotification(newMessage);
+}
+
 export function AssetWatchlistEditor({ hidden, navigateBack }: Props){
     console.log("asset-watchlist > AssetWatchlistEditor");
     const unitPriceFound = prices.value.find(p=>p.symbol === seletedTransaction.value?.transaction.symbol);
@@ -61,15 +72,9 @@ export function AssetWatchlistEditor({ hidden, navigateBack }: Props){
     }
 
     const deleteFromWatchList = async () => {
-        await transactionsDbService.deleteById(seletedTransaction.value.transaction.id);
-        const newMessage = {
-            id: 2,
-            severity: 'none',
-            summary: `${seletedTransaction.value.transaction.symbol} ${seletedTransaction.value.transaction.value} deleted from watch list`,
-            autoTimeout: 2000,
-          };
-          createNotification(newMessage);
-          navigateBack();
+        //console.log(seletedTransaction.value.transaction);
+        await deleteWatchListItem(seletedTransaction.value.transaction.id, seletedTransaction.value.transaction.symbol, seletedTransaction.value.transaction.value);
+        navigateBack();
     }
 
     const foundInWatchlist = seletedTransaction.value?.watchlist.length === 1 ? seletedTransaction.value.watchlist[0] : undefined;
@@ -116,7 +121,7 @@ export function AssetWatchlistEditor({ hidden, navigateBack }: Props){
         </div>
         <div class="oj-md-margin-5x-top oj-md-margin-3x-bottom">
             <ul style="list-style-type: none;">
-                { seletedTransaction.value?.watchlist.length === 1 ? WatchListItem(seletedTransaction.value.watchlist[0]) : <></> }
+                { seletedTransaction.value?.watchlist.length === 1 ? WatchListItem(seletedTransaction.value.watchlist[0], () => {}) : <></> }
             </ul>
         </div>
         <div class="oj-flex oj-sm-padding-4x-top">

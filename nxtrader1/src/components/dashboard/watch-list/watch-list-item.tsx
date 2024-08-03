@@ -6,6 +6,7 @@ import { IntlNumberConverter } from "ojs/ojconverter-number";
 import 'ojs/ojgauge';
 import { ojStatusMeterGauge } from "ojs/ojgauge";
 import { createNotification } from "dashboard/notifications-layer/notifications-layer";
+import { ojButtonEventMap } from "@oracle/oraclejet/ojbutton";
 
 const usdNumberConverter = new IntlNumberConverter({
     style: "currency",
@@ -42,13 +43,14 @@ const tooltipRenderer = (ctx: ojStatusMeterGauge.TooltipContext) => {
       goal⠀⠀⠀⠀⠀ (USDT) : ${ctx.componentElement.getAttribute("data-goalUsdt")}` }
 };
 
-export function WatchListItem(item: StoredTransactionRecord) {
+export function WatchListItem(item: StoredTransactionRecord, deleteItenAction: (value: ojButtonEventMap<any>["ojAction"]) => void) {
     const unitPriceFound = prices.value.find(p=>p.symbol === item.symbol);
     const unitPriceInUsd = unitPriceFound ? unitPriceFound.usd_price : 0;
     const curPriceInUsdt = parseFloat(item.value) * unitPriceInUsd;
     const purchaseCostUsdt = item.purchaseCostUsdt;
     const goalUsdt = item.goalUsdt;
     const profitInUsdt = curPriceInUsdt-purchaseCostUsdt;
+   
     return (<li class="oj-md-padding-3x-top oj-md-padding-3x-bottom">
                 <div class="oj-flex oj-flex oj-text-primary-color oj-typography-body-md">
                   <img src={`styles/images/${item.symbol}.svg`} class=" card-small-token" />
@@ -78,9 +80,19 @@ export function WatchListItem(item: StoredTransactionRecord) {
                       data-goalUsdt={goalUsdt}
                       data-value={item.value}
                       data-valueSymbol={item.symbol}
-                      style={{width: "290px"}}
+                      style={{width: "250px", top: "10px"}}
                       plotArea={{rendered:"on"}}
                       readonly></oj-status-meter-gauge>
+                  <oj-button 
+                      id="bDelete" 
+                      display="icons" 
+                      class="oj-button-sm oj-sm-padding-2x-start" 
+                      onojAction={deleteItenAction} 
+                      data-id={item.id} 
+                      data-value={item.value} 
+                      data-symbol={item.symbol}>
+                      <span slot="startIcon" class="oj-ux-ico-trash" ></span>
+                  </oj-button>
                   <div class="oj-flex-item"></div>
                 </div>
             </li>)

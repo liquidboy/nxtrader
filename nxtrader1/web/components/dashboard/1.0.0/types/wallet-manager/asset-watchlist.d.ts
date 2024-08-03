@@ -11,5 +11,6 @@ type Props = Readonly<{
     hidden: boolean;
     navigateBack: () => void;
 }>;
+export declare const deleteWatchListItem: (transactionId: number, transactionSymbol: string, transactionValue: any) => Promise<void>;
 export declare function AssetWatchlistEditor({ hidden, navigateBack }: Props): import("preact").JSX.Element;
 export {};

@@ -63,7 +63,7 @@ async function getAllTransactions(): Promise<Array<StoredTransactionRecord>> {
     return await getAllTransactionsFromDb();
 }
 
-async function deleteById(id): Promise<void> {
+async function deleteById(id: number): Promise<void> {
     return new Promise((resolve, reject) => {
         const modelStore = IndexDbService.getObjectStore(WATCHLIST_STORE);
         const index = modelStore.index("idIndex");
