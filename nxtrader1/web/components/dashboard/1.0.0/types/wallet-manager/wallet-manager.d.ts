@@ -25,6 +25,7 @@ export declare const tagsAsArray: import("@preact/signals-core").ReadonlySignal<
 export declare const selectedTags: Signal<string[]>;
 export declare const walletsRaw: Signal<CWallet[]>;
 export declare const wallets: import("@preact/signals-core").ReadonlySignal<CWallet[]>;
+export declare function refreshCurrentSelectedAssetTransactions(): Promise<void>;
 declare function WalletManagerImpl(): h.JSX.Element;
 export declare const WalletManager: ComponentType<ExtendGlobalProps<ComponentProps<typeof WalletManagerImpl>>>;
 export declare function getWallet(address: string): CWallet;

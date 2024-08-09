@@ -10,9 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact/signals", "ojs/ojcolor", "./asset-card", "./wallet-lib", "./wallet-list", "./wallet-charts", "./wallet-editor", "dashboard/price-list/price-list", "dashboard/notifications-layer/notifications-layer", "ojs/ojcolor", "./asset-manager", "dashboard/flamingo-api/indexdb/transactionsDbService", "./form-elements", "css!dashboard/wallet-manager/wallet-manager-styles.css", "ojs/ojchart", "ojs/ojactioncard", "ojs/ojcolorspectrum", "ojs/ojlistview", "ojs/ojlistitemlayout", "ojs/ojinputtext", "ojs/ojbutton", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojpopup", "ojs/ojdrawerpopup"], function (require, exports, jsx_runtime_1, ojvcomponent_1, signals_1, ojcolor_1, asset_card_1, wallet_lib_1, wallet_list_1, wallet_charts_1, wallet_editor_1, price_list_1, notifications_layer_1, Color, asset_manager_1, transactionsDbService_1, form_elements_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getWallet = exports.WalletManager = exports.wallets = exports.walletsRaw = exports.selectedTags = exports.tagsAsArray = exports.tags = void 0;
+    exports.getWallet = exports.WalletManager = exports.refreshCurrentSelectedAssetTransactions = exports.wallets = exports.walletsRaw = exports.selectedTags = exports.tagsAsArray = exports.tags = void 0;
     const refreshEvery1Minute = 60000;
     let refreshIntervalId = undefined;
+    const currentTransactions = (0, signals_1.signal)(undefined);
+    const currentSelectedAsset = (0, signals_1.signal)(undefined);
     const useCacheing = false;
     const cacheAddressBalances = new Map();
     exports.tags = (0, signals_1.signal)(new Set());
@@ -47,10 +49,21 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
     function updateWalletsDelayed(interval = 1000) {
         setTimeout(updateWallets, interval);
     }
+    function refreshCurrentSelectedAssetTransactions() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (currentSelectedAsset.value.assetId) {
+                (0, price_list_1.stopPriceRefreshTimer)();
+                currentTransactions.value = { transactions: [], watchlist: [], asset_name: currentSelectedAsset.value.asset_name, assetId: currentSelectedAsset.value.assetId, walletAddress: currentSelectedAsset.value.walletAddress };
+                var result = yield (0, wallet_lib_1.getN3AssetTxs)(currentSelectedAsset.value.walletAddress, currentSelectedAsset.value.assetId);
+                var watchlistFound = yield transactionsDbService_1.default.getTransactions(currentSelectedAsset.value.asset_name);
+                currentTransactions.value = { transactions: result, watchlist: watchlistFound, asset_name: currentSelectedAsset.value.asset_name, assetId: currentSelectedAsset.value.assetId, walletAddress: currentSelectedAsset.value.walletAddress };
+            }
+        });
+    }
+    exports.refreshCurrentSelectedAssetTransactions = refreshCurrentSelectedAssetTransactions;
     function WalletManagerImpl() {
         const walletsMetadata = (0, signals_1.useSignal)(new Map());
         const walletAssetTotals = (0, signals_1.useSignal)([]);
-        const currentTransactions = (0, signals_1.useSignal)(undefined);
         const aFUSDT = (0, signals_1.useSignal)([]);
         const aFUSD = (0, signals_1.useSignal)([]);
         const aNEO = (0, signals_1.useSignal)([]);
@@ -183,6 +196,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
         function assetSelected(walletAddress, asset_name, assetId, sourceElementId) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (assetId) {
+                    currentSelectedAsset.value = { walletAddress, asset_name, assetId };
                     const fe = getFormElements();
                     fe.dat.opened = true;
                     (0, price_list_1.stopPriceRefreshTimer)();

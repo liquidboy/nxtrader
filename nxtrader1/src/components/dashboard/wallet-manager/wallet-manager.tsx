@@ -51,7 +51,8 @@ import { bawHidden, bcloHidden, bclrHidden, bcrHidden, brbHidden, buHidden, tbnD
 const refreshEvery1Minute = 60000;
 let refreshIntervalId: number | undefined = undefined;
 
-
+const currentTransactions = signal<AssetTransactionsMessage|undefined>(undefined);
+const currentSelectedAsset = signal<{walletAddress: string, asset_name: string, assetId: string}>(undefined);
 const useCacheing = false;
 const cacheAddressBalances = new Map<string, { data: Array<Asset>, age: number}>();
 
@@ -94,6 +95,18 @@ function updateWalletsDelayed(interval: number = 1000) {
   //updateWallets(true);
 }
 
+export async function refreshCurrentSelectedAssetTransactions() {
+  if(currentSelectedAsset.value.assetId) {
+    stopPriceRefreshTimer();
+    currentTransactions.value = { transactions: [], watchlist: [], asset_name: currentSelectedAsset.value.asset_name, assetId: currentSelectedAsset.value.assetId, walletAddress: currentSelectedAsset.value.walletAddress };
+    var result = await getN3AssetTxs(currentSelectedAsset.value.walletAddress, currentSelectedAsset.value.assetId);
+    var watchlistFound = await transactionsDbService.getTransactions(currentSelectedAsset.value.asset_name);
+    currentTransactions.value = { transactions: result, watchlist: watchlistFound,  asset_name:currentSelectedAsset.value.asset_name, assetId: currentSelectedAsset.value.assetId, walletAddress: currentSelectedAsset.value.walletAddress } as AssetTransactionsMessage;
+    // console.log("xxx assetSelected", watchlistFound);
+  }
+}
+
+
 /**
  * @ojmetadata pack "dashboard"
  * @ojmetadata version "1.0.0"
@@ -104,8 +117,7 @@ function updateWalletsDelayed(interval: number = 1000) {
 function WalletManagerImpl() {
   const walletsMetadata = useSignal<Map<string,{}>>(new Map());
   const walletAssetTotals = useSignal<Array<WChartData>>([]);
-  const currentTransactions = useSignal<AssetTransactionsMessage|undefined>(undefined);
-
+  
   const aFUSDT = useSignal<Array<CAsset>>([]);
   const aFUSD = useSignal<Array<CAsset>>([]);
   const aNEO = useSignal<Array<CAsset>>([]);
@@ -265,6 +277,7 @@ function WalletManagerImpl() {
 
   async function assetSelected(walletAddress: string, asset_name: string, assetId: string | null, sourceElementId: string) {
     if(assetId) {
+      currentSelectedAsset.value = {walletAddress, asset_name, assetId};
       const fe = getFormElements();
       //const popup = document.querySelector("#popup1") as ojPopup;
       //popup.open(`#${sourceElementId}`);
@@ -277,6 +290,7 @@ function WalletManagerImpl() {
       // console.log("xxx assetSelected", watchlistFound);
     }
   }
+
 
   async function refreshAllTags() {
     console.log("wallet-manager > refreshAllTags", wallets);

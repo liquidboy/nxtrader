@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-define(["require", "exports", "preact/jsx-runtime", "@preact/signals", "./wallet-lib", "dashboard/flamingo-api/indexdb/transactionsDbService", "dashboard/notifications-layer/notifications-layer", "dashboard/watch-list/watch-list-item", "ojs/ojconverter-number", "dashboard/price-list/price-list", "./asset-transactions", "dashboard/watch-list/watch-list", "ojs/ojinputnumber"], function (require, exports, jsx_runtime_1, signals_1, wallet_lib_1, transactionsDbService_1, notifications_layer_1, watch_list_item_1, ojconverter_number_1, price_list_1, asset_transactions_1, watch_list_1) {
+define(["require", "exports", "preact/jsx-runtime", "@preact/signals", "./wallet-lib", "dashboard/flamingo-api/indexdb/transactionsDbService", "dashboard/notifications-layer/notifications-layer", "dashboard/watch-list/watch-list-item", "ojs/ojconverter-number", "dashboard/price-list/price-list", "./asset-transactions", "dashboard/watch-list/watch-list", "./wallet-manager", "ojs/ojinputnumber"], function (require, exports, jsx_runtime_1, signals_1, wallet_lib_1, transactionsDbService_1, notifications_layer_1, watch_list_item_1, ojconverter_number_1, price_list_1, asset_transactions_1, watch_list_1, wallet_manager_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AssetWatchlistEditor = exports.deleteWatchListItem = exports.seletedTransaction = void 0;
@@ -49,6 +49,7 @@ define(["require", "exports", "preact/jsx-runtime", "@preact/signals", "./wallet
             };
             (0, notifications_layer_1.createNotification)(newMessage);
             (0, watch_list_1.tryLoadTransactionsInWatchlist)();
+            (0, wallet_manager_1.refreshCurrentSelectedAssetTransactions)();
             navigateBack();
         });
         const updateInWatchList = () => __awaiter(this, void 0, void 0, function* () {
@@ -63,11 +64,13 @@ define(["require", "exports", "preact/jsx-runtime", "@preact/signals", "./wallet
             };
             (0, notifications_layer_1.createNotification)(newMessage);
             (0, watch_list_1.tryLoadTransactionsInWatchlist)();
+            (0, wallet_manager_1.refreshCurrentSelectedAssetTransactions)();
             navigateBack();
         });
         const deleteFromWatchList = () => __awaiter(this, void 0, void 0, function* () {
             yield (0, exports.deleteWatchListItem)(exports.seletedTransaction.value.transaction.id, exports.seletedTransaction.value.transaction.symbol, exports.seletedTransaction.value.transaction.value);
             (0, watch_list_1.tryLoadTransactionsInWatchlist)();
+            (0, wallet_manager_1.refreshCurrentSelectedAssetTransactions)();
             navigateBack();
         });
         const foundInWatchlist = ((_a = exports.seletedTransaction.value) === null || _a === void 0 ? void 0 : _a.watchlist.length) === 1 ? exports.seletedTransaction.value.watchlist[0] : undefined;
