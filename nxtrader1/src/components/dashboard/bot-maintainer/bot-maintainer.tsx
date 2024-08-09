@@ -15,7 +15,7 @@ type Props = Readonly<{
  * 
  */
 function BotMaintainerImpl(
-  { message = "Hello from  dashboard-bot-maintainer" }: Props
+  { message = "" }: Props
 ) {
   console.log("bot-maintainer > render")
 
