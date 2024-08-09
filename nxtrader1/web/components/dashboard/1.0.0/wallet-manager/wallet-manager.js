@@ -98,8 +98,8 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                 if (fe.wn.value && fe.wpk.value && fe.wk.value) {
                     (0, wallet_lib_1.addWalletToStorage)(fe.wn.value, fe.wpk.value, fe.wk.value, fe.wg.value, (_a = fe.wcol.value) === null || _a === void 0 ? void 0 : _a.toString(), fe.wt.value);
                     close();
-                    updateWalletsDelayed();
-                    refreshWalletsDelayed();
+                    updateWalletsDelayed(1000);
+                    refreshWalletsDelayed(2000);
                     form_elements_1.brbHidden.value = false;
                 }
             }

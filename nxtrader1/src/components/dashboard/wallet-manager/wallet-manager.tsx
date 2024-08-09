@@ -160,8 +160,8 @@ function WalletManagerImpl() {
         addWalletToStorage(fe.wn.value, fe.wpk.value, fe.wk.value, fe.wg.value, fe.wcol.value?.toString(), fe.wt.value);
         //wallets.value = loadWalletsFromStorage();
         close();
-        updateWalletsDelayed();
-        refreshWalletsDelayed();
+        updateWalletsDelayed(1000);
+        refreshWalletsDelayed(2000);
         brbHidden.value = false;
       }
     }
