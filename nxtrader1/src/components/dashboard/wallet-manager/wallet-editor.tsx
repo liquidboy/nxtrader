@@ -33,7 +33,7 @@ import { BLACK } from "ojs/ojcolor";
 import { WalletJSON } from "@cityofzion/neon-core/lib/wallet";
 import { CAsset, CWallet, KEY } from "./wallet-lib";
 import { ActionCardElement } from "ojs/ojactioncard";
-import { bcrHidden, buHidden, bcloHidden, bclrHidden } from "./form-elements";
+import { bcrHidden, buHidden, bcloHidden, bclrHidden, tbnDisabled } from "./form-elements";
 //import ArrayDataProvider = require("ojs/ojarraydataprovider");
 
 
@@ -72,8 +72,8 @@ export function WalletEditor(
    <div id="walletEditor" className="oj-sm-margin-4x-start oj-sm-padding-3x" hidden>
       <oj-validation-group id="tracker" valid={groupValid.value}>
         <oj-form-layout>
-          <oj-input-text id="wn" required={true} label-hint="wallet name"></oj-input-text>
-          <oj-input-password id="wpk" required={true} label-hint="public key" mask-icon="visible"></oj-input-password>
+          <oj-input-text id="wn" required={true} label-hint="wallet friendly name" disabled={tbnDisabled.value}></oj-input-text>
+          <oj-input-password id="wpk" required={true} label-hint="public wallet address" mask-icon="visible"></oj-input-password>
           <oj-input-password id="wk" required={false} value={KEY} label-hint="key" mask-icon="visible" style="display:none" hidden></oj-input-password>
           <oj-input-number id="wg" onKeyPress={eatNonNumbers} labelHint="Goal (fUSDT)" labelEdge="inside"></oj-input-number>
           <oj-color-spectrum id="wcol" label-hint="wallet color" ></oj-color-spectrum>

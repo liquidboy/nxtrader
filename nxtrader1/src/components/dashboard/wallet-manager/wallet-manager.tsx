@@ -46,7 +46,7 @@ import * as Color from "ojs/ojcolor";
 import { ojComboboxMany } from "ojs/ojselectcombobox";
 import { AssetManager, showAssetManagerRoute } from "./asset-manager";
 import transactionsDbService from "dashboard/flamingo-api/indexdb/transactionsDbService";
-import { bawHidden, bcloHidden, bclrHidden, bcrHidden, brbHidden, buHidden } from "./form-elements";
+import { bawHidden, bcloHidden, bclrHidden, bcrHidden, brbHidden, buHidden, tbnDisabled } from "./form-elements";
 
 const refreshEvery1Minute = 60000;
 let refreshIntervalId: number | undefined = undefined;
@@ -83,7 +83,7 @@ export const wallets = computed(()=>{
 
 function updateWallets(force?: boolean, postUpdateWallets? : () => void) {
   const existingWallets = loadWalletsFromStorage();
-  console.log("wallet-manager > updateWallets");
+  console.log(`wallet-manager > updateWallets ${existingWallets.length}`);
   if(force || existingWallets && existingWallets.length > 0) {
     walletsRaw.value = existingWallets;
     if(postUpdateWallets) postUpdateWallets();
@@ -147,6 +147,12 @@ function WalletManagerImpl() {
     return {wcol, wn, wpk, wk, tracker, lvw, we, wg, wt, de, dat};
   }
 
+  function refreshWalletsDelayed(interval: number = 1000) {
+    setTimeout(() => {
+      refreshAllWalletBalances();
+    }, interval);
+  }
+
   function tryCreate() {
     if(isFormValid()){
       const fe = getFormElements();
@@ -154,8 +160,8 @@ function WalletManagerImpl() {
         addWalletToStorage(fe.wn.value, fe.wpk.value, fe.wk.value, fe.wg.value, fe.wcol.value?.toString(), fe.wt.value);
         //wallets.value = loadWalletsFromStorage();
         close();
-        //updateWallets();
         updateWalletsDelayed();
+        refreshWalletsDelayed();
         brbHidden.value = false;
       }
     }
@@ -393,6 +399,7 @@ function WalletManagerImpl() {
       bawHidden.value = true;
       fe.wt.value = w.tags;
       fe.de.opened = true;
+      tbnDisabled.value = true;
       stopPriceRefreshTimer();
     }
   }
@@ -403,6 +410,7 @@ function WalletManagerImpl() {
     fe.we.hidden = false;
     bawHidden.value = true;
     fe.de.opened = true;
+    tbnDisabled.value = false;
     stopPriceRefreshTimer();
   }
 

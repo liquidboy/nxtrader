@@ -14,6 +14,7 @@ export const buHidden = signal<boolean>(true);
 export const bclrHidden = signal<boolean>(false);
 export const bcloHidden = signal<boolean>(true);
 export const brbHidden = signal<boolean>(true);
+export const tbnDisabled = signal<boolean>(false);
 //const we = document.getElementById('walletEditor') as HTMLElement;
 //const wt = document.getElementById('wt') as ojComboboxMany<any, any, any>;
 //const de = document.getElementById('de') as DrawerPopupElement;

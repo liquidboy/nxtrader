@@ -37,7 +37,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
     });
     function updateWallets(force, postUpdateWallets) {
         const existingWallets = (0, wallet_lib_1.loadWalletsFromStorage)();
-        console.log("wallet-manager > updateWallets");
+        console.log(`wallet-manager > updateWallets ${existingWallets.length}`);
         if (force || existingWallets && existingWallets.length > 0) {
             exports.walletsRaw.value = existingWallets;
             if (postUpdateWallets)
@@ -86,6 +86,11 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             const dat = document.getElementById('dat');
             return { wcol, wn, wpk, wk, tracker, lvw, we, wg, wt, de, dat };
         }
+        function refreshWalletsDelayed(interval = 1000) {
+            setTimeout(() => {
+                refreshAllWalletBalances();
+            }, interval);
+        }
         function tryCreate() {
             var _a;
             if (isFormValid()) {
@@ -94,6 +99,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     (0, wallet_lib_1.addWalletToStorage)(fe.wn.value, fe.wpk.value, fe.wk.value, fe.wg.value, (_a = fe.wcol.value) === null || _a === void 0 ? void 0 : _a.toString(), fe.wt.value);
                     close();
                     updateWalletsDelayed();
+                    refreshWalletsDelayed();
                     form_elements_1.brbHidden.value = false;
                 }
             }
@@ -321,6 +327,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                 form_elements_1.bawHidden.value = true;
                 fe.wt.value = w.tags;
                 fe.de.opened = true;
+                form_elements_1.tbnDisabled.value = true;
                 (0, price_list_1.stopPriceRefreshTimer)();
             }
         }
@@ -330,6 +337,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             fe.we.hidden = false;
             form_elements_1.bawHidden.value = true;
             fe.de.opened = true;
+            form_elements_1.tbnDisabled.value = false;
             (0, price_list_1.stopPriceRefreshTimer)();
         }
         return (0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("oj-drawer-popup", Object.assign({ id: "dat", edge: "end", class: "drawerAssetTransactions", onojBeforeClose: close, onopenedChanged: (item) => {
