@@ -46,7 +46,7 @@ import * as Color from "ojs/ojcolor";
 import { ojComboboxMany } from "ojs/ojselectcombobox";
 import { AssetManager, showAssetManagerRoute } from "./asset-manager";
 import transactionsDbService from "dashboard/flamingo-api/indexdb/transactionsDbService";
-import { bawHidden, bcloHidden, bclrHidden, bcrHidden, brbHidden, buHidden, tbnDisabled } from "./form-elements";
+import { bawHidden, bcloHidden, bclrHidden, bcrHidden, brbHidden, buHidden, tbnDisabled, tdnHidden } from "./form-elements";
 
 const refreshEvery1Minute = 60000;
 let refreshIntervalId: number | undefined = undefined;
@@ -149,6 +149,7 @@ function WalletManagerImpl() {
     const wcol = document.getElementById('wcol') as ojColorSpectrum;
     const wg = document.getElementById('wg') as InputNumberElement;
     const wn = document.getElementById('wn') as InputTextElement<string>;
+    const wdn = document.getElementById('wdn') as InputTextElement<string>;
     const wpk = document.getElementById('wpk') as InputTextElement<string>;
     const wk = document.getElementById('wk') as InputTextElement<string>;
     const tracker = document.getElementById('tracker') as ojValidationGroup;
@@ -156,7 +157,7 @@ function WalletManagerImpl() {
     const wt = document.getElementById('wt') as ojComboboxMany<any, any, any>;
     const de = document.getElementById('de') as DrawerPopupElement;
     const dat = document.getElementById('dat') as DrawerPopupElement;
-    return {wcol, wn, wpk, wk, tracker, lvw, we, wg, wt, de, dat};
+    return {wcol, wn, wdn, wpk, wk, tracker, lvw, we, wg, wt, de, dat};
   }
 
   function refreshWalletsDelayed(interval: number = 1000) {
@@ -181,8 +182,8 @@ function WalletManagerImpl() {
 
   function tryUpdate() {
     const fe = getFormElements();
-    if(isFormValid() && fe.wn.value){
-      updateWalletToStorage(fe.wn.value, fe.wpk.value, fe.wg.value, fe.wcol.value?.toString(), fe.wt.value); //fe.wt.valueOptions.flatMap(x=>x.value));
+    if(isFormValid() && fe.wn.value && fe.wn.value){
+      updateWalletToStorage(fe.wn.value,  fe.wpk.value, fe.wg.value, fe.wcol.value?.toString(), fe.wt.value, fe.wdn.value); //fe.wt.valueOptions.flatMap(x=>x.value));
       //wallets.value = loadWalletsFromStorage();
       close();
       //updateWallets();
@@ -210,6 +211,7 @@ function WalletManagerImpl() {
   function clear() {
     const fe = getFormElements();
     fe.wn.value = "";
+    fe.wdn.value = "";
     fe.wpk.value = "";
     fe.wk.value = KEY;
     bcrHidden.value = false;
@@ -339,15 +341,15 @@ function WalletManagerImpl() {
           let unitPriceFound = prices.value.find(p=>p.symbol === a.symbol);;   
           
           switch(a.symbol){
-            case "fUSDT" : aFUSDT.value = [...aFUSDT.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; break;
-            case "FUSD" : aFUSD.value = [...aFUSD.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; break;
-            case "NEO" : aNEO.value = [...aNEO.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
-            case "bNEO" : aNEO.value = [...aNEO.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
-            case "GAS" : aGAS.value = [...aGAS.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; break;
-            case "FLM" : aFLM.value = [...aFLM.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; break;
-            case "fWBTC" : aBTC.value = [...aBTC.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; break;
-            case "fWETH" : aETH.value = [...aETH.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; break;
-            case "FLUND" : aFLUND.value = [...aFLUND.value, {...a, walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor}]; break;
+            case "fUSDT" : aFUSDT.value = [...aFUSDT.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "FUSD" : aFUSD.value = [...aFUSD.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "NEO" : aNEO.value = [...aNEO.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
+            case "bNEO" : aNEO.value = [...aNEO.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
+            case "GAS" : aGAS.value = [...aGAS.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "FLM" : aFLM.value = [...aFLM.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "fWBTC" : aBTC.value = [...aBTC.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "fWETH" : aETH.value = [...aETH.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "FLUND" : aFLUND.value = [...aFLUND.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             default: console.log(a.symbol);
           }
           const unitPriceInUsd = unitPriceFound ? unitPriceFound.usd_price : 0;
@@ -403,6 +405,8 @@ function WalletManagerImpl() {
 
       fe.we.hidden = false;
       fe.wn.value = w.name;
+      tdnHidden.value = false;
+      fe.wdn.value = w.displayName ?? w.name;
       fe.wpk.value = w.publicKey ? w.publicKey : w3._WIF ;
       fe.wg.value = w.goal;
       fe.wcol.value = w.walletColor ? new Color(w.walletColor) : BLACK;
@@ -422,6 +426,7 @@ function WalletManagerImpl() {
     clear();
     const fe = getFormElements();
     fe.we.hidden = false;
+    tdnHidden.value = true;
     bawHidden.value = true;
     fe.de.opened = true;
     tbnDisabled.value = false;

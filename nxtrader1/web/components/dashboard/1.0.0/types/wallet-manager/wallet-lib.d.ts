@@ -68,6 +68,7 @@ export declare class CWallet extends wallet3.Wallet {
     publicKey?: string;
     goal?: number;
     tags?: Array<string>;
+    displayName?: string;
     constructor(obj?: Partial<CWalletJSON>);
     export(): CWalletJSON;
 }
@@ -81,7 +82,7 @@ export declare const loadWalletsFromStoragePK: () => Array<CWallet>;
 export declare const loadWalletsFromStorage: () => Array<CWallet>;
 export declare const addWalletToStoragePK: (name: string, pk: string, key: string, color: string) => void;
 export declare const addWalletToStorage: (name: string, pk: string, key: string, goal: number, color?: string, tags?: Array<string>) => void;
-export declare const updateWalletToStorage: (name: string, pk: string, goal: number, color?: string, tags?: Array<string>) => void;
+export declare const updateWalletToStorage: (name: string, pk: string, goal: number, color?: string, tags?: Array<string>, displayName?: string) => void;
 export declare const deleteWalletFromStorage: (name: string) => void;
 export declare const loadRatiosFromStorage: () => Map<string, any>;
 export declare const addToRatiosInStorage: (name: string, val: any) => void;

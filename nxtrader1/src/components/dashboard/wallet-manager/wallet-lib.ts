@@ -108,6 +108,7 @@ export class CWallet extends wallet3.Wallet {
   publicKey?: string;
   goal?: number;
   tags?: Array<string>;
+  displayName?: string;
   constructor(obj?: Partial<CWalletJSON>){
     super(obj);
   }
@@ -389,6 +390,7 @@ export const addWalletToStoragePK = (name: string, pk: string, key: string, colo
   const cw = new CWallet({name: name ?? 'nxTraderUser', walletColor: color.toString()});
   cw.walletColor = color;
   cw.addAccount(account);
+  cw.displayName = name;
   const wif = cw.accounts[0].WIF;
   cw.encrypt(0, key);
 
@@ -416,6 +418,7 @@ export const addWalletToStorage = (name: string, pk: string, key: string, goal: 
   cw.publicKey = pk;
   cw.goal = goal;
   cw.tags = tags;
+  cw.displayName = name;
 
   const ws = loadWalletsFromStorage();
   ws.push(cw);
@@ -424,7 +427,7 @@ export const addWalletToStorage = (name: string, pk: string, key: string, goal: 
   updateLocalStorage(STORAGE_NAME['walletPubArr-Neo3'], ws);
 }
 
-export const updateWalletToStorage = (name: string, pk: string, goal: number, color?: string, tags?: Array<string>) => {
+export const updateWalletToStorage = (name: string, pk: string, goal: number, color?: string, tags?: Array<string>, displayName?: string) => {
   const ws = loadWalletsFromStorage();
   const w = ws.find(x=>x.name === name);
   if(w) {
@@ -434,6 +437,7 @@ export const updateWalletToStorage = (name: string, pk: string, goal: number, co
     console.log("try save ", tags);
     cw.tags = tags;
     cw.publicKey = pk;
+    cw.displayName = displayName??name;
   }
   //updateLocalStorage(STORAGE_NAME['walletArr-Neo3'], ws);
   updateLocalStorage(STORAGE_NAME['walletPubArr-Neo3'], ws);

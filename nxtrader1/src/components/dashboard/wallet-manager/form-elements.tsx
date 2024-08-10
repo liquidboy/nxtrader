@@ -8,6 +8,7 @@ console.log("form-elements > init");
 //const wpk = document.getElementById('wpk') as InputTextElement<string>;
 //const wk = document.getElementById('wk') as InputTextElement<string>;
 //const tracker = document.getElementById('tracker') as ojValidationGroup;
+export const tdnHidden = signal<boolean>(true);
 export const bawHidden = signal<boolean>(false);
 export const bcrHidden = signal<boolean>(false);
 export const buHidden = signal<boolean>(true);

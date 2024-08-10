@@ -1,4 +1,5 @@
 import { Signal } from "@preact/signals";
+export declare const tdnHidden: Signal<boolean>;
 export declare const bawHidden: Signal<boolean>;
 export declare const bcrHidden: Signal<boolean>;
 export declare const buHidden: Signal<boolean>;

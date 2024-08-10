@@ -105,7 +105,7 @@ export function WalletList(
         <oj-list-item-layout style="width:100%">
           <div slot="leading" style={walletColorStyle}></div>
           <div class="oj-typography-body-md oj-text-color-primary">
-            {item.item.data.name}
+            {item.item.data.displayName??item.item.data.name}
           </div>
           <div slot="secondary" class="oj-typography-body-sm oj-text-color-secondary" style="min-width: 200px;">
             {item.item.data.publicKey ? item.item.data.publicKey : item.item.data.accounts[0].label}

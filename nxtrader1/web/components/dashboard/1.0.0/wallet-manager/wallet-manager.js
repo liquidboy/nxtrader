@@ -90,6 +90,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             const wcol = document.getElementById('wcol');
             const wg = document.getElementById('wg');
             const wn = document.getElementById('wn');
+            const wdn = document.getElementById('wdn');
             const wpk = document.getElementById('wpk');
             const wk = document.getElementById('wk');
             const tracker = document.getElementById('tracker');
@@ -97,7 +98,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             const wt = document.getElementById('wt');
             const de = document.getElementById('de');
             const dat = document.getElementById('dat');
-            return { wcol, wn, wpk, wk, tracker, lvw, we, wg, wt, de, dat };
+            return { wcol, wn, wdn, wpk, wk, tracker, lvw, we, wg, wt, de, dat };
         }
         function refreshWalletsDelayed(interval = 1000) {
             setTimeout(() => {
@@ -120,8 +121,8 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
         function tryUpdate() {
             var _a;
             const fe = getFormElements();
-            if (isFormValid() && fe.wn.value) {
-                (0, wallet_lib_1.updateWalletToStorage)(fe.wn.value, fe.wpk.value, fe.wg.value, (_a = fe.wcol.value) === null || _a === void 0 ? void 0 : _a.toString(), fe.wt.value);
+            if (isFormValid() && fe.wn.value && fe.wn.value) {
+                (0, wallet_lib_1.updateWalletToStorage)(fe.wn.value, fe.wpk.value, fe.wg.value, (_a = fe.wcol.value) === null || _a === void 0 ? void 0 : _a.toString(), fe.wt.value, fe.wdn.value);
                 close();
                 updateWalletsDelayed();
             }
@@ -141,6 +142,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
         function clear() {
             const fe = getFormElements();
             fe.wn.value = "";
+            fe.wdn.value = "";
             fe.wpk.value = "";
             fe.wk.value = wallet_lib_1.KEY;
             form_elements_1.bcrHidden.value = false;
@@ -249,38 +251,39 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     }
                     let runningWalletTotalInUsd = 0;
                     assets.forEach(a => {
+                        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
                         if (price_list_1.prices.value && a.balance && a.balance !== "0") {
                             let unitPriceFound = price_list_1.prices.value.find(p => p.symbol === a.symbol);
                             ;
                             switch (a.symbol) {
                                 case "fUSDT":
-                                    aFUSDT.value = [...aFUSDT.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aFUSDT.value = [...aFUSDT.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_a = w.displayName) !== null && _a !== void 0 ? _a : w.name, walletColor: w.walletColor })];
                                     break;
                                 case "FUSD":
-                                    aFUSD.value = [...aFUSD.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aFUSD.value = [...aFUSD.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_b = w.displayName) !== null && _b !== void 0 ? _b : w.name, walletColor: w.walletColor })];
                                     break;
                                 case "NEO":
-                                    aNEO.value = [...aNEO.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aNEO.value = [...aNEO.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_c = w.displayName) !== null && _c !== void 0 ? _c : w.name, walletColor: w.walletColor })];
                                     unitPriceFound = price_list_1.prices.value.find(p => p.symbol === "bNEO");
                                     break;
                                 case "bNEO":
-                                    aNEO.value = [...aNEO.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aNEO.value = [...aNEO.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_d = w.displayName) !== null && _d !== void 0 ? _d : w.name, walletColor: w.walletColor })];
                                     unitPriceFound = price_list_1.prices.value.find(p => p.symbol === "bNEO");
                                     break;
                                 case "GAS":
-                                    aGAS.value = [...aGAS.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aGAS.value = [...aGAS.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_e = w.displayName) !== null && _e !== void 0 ? _e : w.name, walletColor: w.walletColor })];
                                     break;
                                 case "FLM":
-                                    aFLM.value = [...aFLM.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aFLM.value = [...aFLM.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_f = w.displayName) !== null && _f !== void 0 ? _f : w.name, walletColor: w.walletColor })];
                                     break;
                                 case "fWBTC":
-                                    aBTC.value = [...aBTC.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aBTC.value = [...aBTC.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_g = w.displayName) !== null && _g !== void 0 ? _g : w.name, walletColor: w.walletColor })];
                                     break;
                                 case "fWETH":
-                                    aETH.value = [...aETH.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aETH.value = [...aETH.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_h = w.displayName) !== null && _h !== void 0 ? _h : w.name, walletColor: w.walletColor })];
                                     break;
                                 case "FLUND":
-                                    aFLUND.value = [...aFLUND.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: w.name, walletColor: w.walletColor })];
+                                    aFLUND.value = [...aFLUND.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_j = w.displayName) !== null && _j !== void 0 ? _j : w.name, walletColor: w.walletColor })];
                                     break;
                                 default: console.log(a.symbol);
                             }
@@ -323,6 +326,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             });
         }
         function showEditWallet(event) {
+            var _a;
             const wk = event.srcElement.attributes["row-data"].value;
             const w = exports.wallets.value.find(x => x.name === wk);
             if (w) {
@@ -331,6 +335,8 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                 console.log("wallet-manager > showEditWallet", w);
                 fe.we.hidden = false;
                 fe.wn.value = w.name;
+                form_elements_1.tdnHidden.value = false;
+                fe.wdn.value = (_a = w.displayName) !== null && _a !== void 0 ? _a : w.name;
                 fe.wpk.value = w.publicKey ? w.publicKey : w3._WIF;
                 fe.wg.value = w.goal;
                 fe.wcol.value = w.walletColor ? new Color(w.walletColor) : ojcolor_1.BLACK;
@@ -349,6 +355,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             clear();
             const fe = getFormElements();
             fe.we.hidden = false;
+            form_elements_1.tdnHidden.value = true;
             form_elements_1.bawHidden.value = true;
             fe.de.opened = true;
             form_elements_1.tbnDisabled.value = false;

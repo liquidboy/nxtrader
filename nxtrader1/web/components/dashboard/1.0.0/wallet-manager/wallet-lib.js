@@ -278,6 +278,7 @@ define(["require", "exports", "@cityofzion/neon-core", "@cityofzion/neon-core-ne
         const cw = new CWallet({ name: name !== null && name !== void 0 ? name : 'nxTraderUser', walletColor: color.toString() });
         cw.walletColor = color;
         cw.addAccount(account);
+        cw.displayName = name;
         const wif = cw.accounts[0].WIF;
         cw.encrypt(0, key);
         const ws = (0, exports.loadWalletsFromStoragePK)();
@@ -295,13 +296,14 @@ define(["require", "exports", "@cityofzion/neon-core", "@cityofzion/neon-core-ne
         cw.publicKey = pk;
         cw.goal = goal;
         cw.tags = tags;
+        cw.displayName = name;
         const ws = (0, exports.loadWalletsFromStorage)();
         ws.push(cw);
         updateLocalStorage(STORAGE_NAME.chainType, newChainType);
         updateLocalStorage(STORAGE_NAME['walletPubArr-Neo3'], ws);
     };
     exports.addWalletToStorage = addWalletToStorage;
-    const updateWalletToStorage = (name, pk, goal, color, tags) => {
+    const updateWalletToStorage = (name, pk, goal, color, tags, displayName) => {
         const ws = (0, exports.loadWalletsFromStorage)();
         const w = ws.find(x => x.name === name);
         if (w) {
@@ -312,6 +314,7 @@ define(["require", "exports", "@cityofzion/neon-core", "@cityofzion/neon-core-ne
             console.log("try save ", tags);
             cw.tags = tags;
             cw.publicKey = pk;
+            cw.displayName = displayName !== null && displayName !== void 0 ? displayName : name;
         }
         updateLocalStorage(STORAGE_NAME['walletPubArr-Neo3'], ws);
     };
