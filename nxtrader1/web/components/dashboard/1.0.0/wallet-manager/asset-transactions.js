@@ -47,7 +47,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojconverter-number", "o
         const showAddAssetToWatchList = (value) => __awaiter(this, void 0, void 0, function* () {
             (0, asset_manager_1.showAssetManagerRoute)({ assetWatchlistEditorHidden: false });
             let tx = yield _apiClient.getNeoTransaction(value.txid);
-            console.log("xxx tx", tx);
+            console.log("aeest-transactions > showAddAssetToWatchList", tx);
             asset_watchlist_1.seletedTransaction.value = { txDetail: tx, transaction: value, transactionType: "add", watchlist: [] };
         });
         const showEditAssetToWatchList = (value) => __awaiter(this, void 0, void 0, function* () {

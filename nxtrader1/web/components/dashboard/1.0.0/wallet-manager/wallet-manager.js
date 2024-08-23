@@ -67,6 +67,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
         const aFUSDT = (0, signals_1.useSignal)([]);
         const aFUSD = (0, signals_1.useSignal)([]);
         const aNEO = (0, signals_1.useSignal)([]);
+        const abNEO = (0, signals_1.useSignal)([]);
         const aGAS = (0, signals_1.useSignal)([]);
         const aFLM = (0, signals_1.useSignal)([]);
         const aBTC = (0, signals_1.useSignal)([]);
@@ -157,6 +158,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             aFUSDT.value = [];
             aFUSD.value = [];
             aNEO.value = [];
+            abNEO.value = [];
             aGAS.value = [];
             aFLM.value = [];
             aBTC.value = [];
@@ -206,6 +208,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     var result = yield (0, wallet_lib_1.getN3AssetTxs)(walletAddress, assetId);
                     var watchlistFound = yield transactionsDbService_1.default.getTransactions(asset_name);
                     currentTransactions.value = { transactions: result, watchlist: watchlistFound, asset_name, assetId, walletAddress };
+                    console.log("wallet-manager > assetSelected", watchlistFound, currentTransactions.value);
                 }
             });
         }
@@ -267,7 +270,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                                     unitPriceFound = price_list_1.prices.value.find(p => p.symbol === "bNEO");
                                     break;
                                 case "bNEO":
-                                    aNEO.value = [...aNEO.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_d = w.displayName) !== null && _d !== void 0 ? _d : w.name, walletColor: w.walletColor })];
+                                    abNEO.value = [...abNEO.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_d = w.displayName) !== null && _d !== void 0 ? _d : w.name, walletColor: w.walletColor })];
                                     unitPriceFound = price_list_1.prices.value.find(p => p.symbol === "bNEO");
                                     break;
                                 case "GAS":
@@ -314,7 +317,8 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     addNewTotal("FUSD", aFUSD.value);
                     addNewTotal("fUSDT", aFUSDT.value);
                     addNewTotal("GAS", aGAS.value);
-                    addNewTotal("bNEO", aNEO.value);
+                    addNewTotal("bNEO", abNEO.value);
+                    addNewTotal("NEO", aNEO.value);
                     addNewTotal("FLM", aFLM.value);
                     addNewTotal("fWBTC", aBTC.value);
                     addNewTotal("fWETH", aETH.value);
@@ -366,7 +370,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                             (0, asset_manager_1.showAssetManagerRoute)({ assetTransactionsHidden: false });
                         }
                         ;
-                    } }, { children: (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(asset_manager_1.AssetManager, { transactions: currentTransactions.value }) }) })), (0, jsx_runtime_1.jsx)("oj-drawer-popup", Object.assign({ id: "de", edge: "start", class: "drawerEditor", onojBeforeClose: close }, { children: (0, jsx_runtime_1.jsx)(wallet_editor_1.WalletEditor, { tryCreate: tryCreate, tryUpdate: tryUpdate, clear: clear, close: close, showAddWallet: showAddWallet, refreshAllWalletBalances: refreshAllWalletBalances }) })), (0, jsx_runtime_1.jsx)(wallet_list_1.WalletList, { wallets: exports.wallets.value, walletsMetadata: walletsMetadata.value, walletSelected: walletSelected, tryDeleteWallet: tryDeleteWallet, showAddWallet: showAddWallet, showEditWallet: showEditWallet, refreshAllWalletBalances: refreshAllWalletBalances }), (0, jsx_runtime_1.jsx)(wallet_charts_1.WalletCharts, { chartData: walletAssetTotals.value }), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-sm-margin-5x-top" }, { children: [(0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FUSD", wasset: aFUSD.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fUSDT", wasset: aFUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLM", wasset: aFLM.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLUND", wasset: aFLUND.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "bNEO", wasset: aNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "GAS", wasset: aGAS.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWBTC", wasset: aBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWETH", wasset: aETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected })] }))] });
+                    } }, { children: (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(asset_manager_1.AssetManager, { transactions: currentTransactions.value }) }) })), (0, jsx_runtime_1.jsx)("oj-drawer-popup", Object.assign({ id: "de", edge: "start", class: "drawerEditor", onojBeforeClose: close }, { children: (0, jsx_runtime_1.jsx)(wallet_editor_1.WalletEditor, { tryCreate: tryCreate, tryUpdate: tryUpdate, clear: clear, close: close, showAddWallet: showAddWallet, refreshAllWalletBalances: refreshAllWalletBalances }) })), (0, jsx_runtime_1.jsx)(wallet_list_1.WalletList, { wallets: exports.wallets.value, walletsMetadata: walletsMetadata.value, walletSelected: walletSelected, tryDeleteWallet: tryDeleteWallet, showAddWallet: showAddWallet, showEditWallet: showEditWallet, refreshAllWalletBalances: refreshAllWalletBalances }), (0, jsx_runtime_1.jsx)(wallet_charts_1.WalletCharts, { chartData: walletAssetTotals.value }), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-sm-margin-5x-top" }, { children: [(0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FUSD", wasset: aFUSD.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fUSDT", wasset: aFUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLM", wasset: aFLM.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLUND", wasset: aFLUND.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "bNEO", wasset: abNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "NEO", wasset: aNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "GAS", wasset: aGAS.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWBTC", wasset: aBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWETH", wasset: aETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected })] }))] });
     }
     exports.WalletManager = (0, ojvcomponent_1.registerCustomElement)("dashboard-wallet-manager", WalletManagerImpl, "WalletManager");
     function getWallet(address) {

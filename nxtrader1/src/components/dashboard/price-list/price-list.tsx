@@ -99,7 +99,7 @@ export const PriceList: ComponentType <
 function refreshPrices() {
   getFlamingoPriceFeed().then(data => {
     console.log("price-list > refreshPrices > completed", data);
-    prices.value = data;
+    prices.value = addMissingBNEO(data);
   });
 }
 
@@ -109,10 +109,16 @@ async function getFlamingoPriceFeed() {
 }
 
 function addMissingBNEO(data: Array<any>){
-  var neo = data.filter(x=>x.symbol === "NEO");
+  var neo = data.filter(x=>x.symbol === "bNEO");
   if(neo.length === 1) {
-    neo[0].symbol = "bNEO";
-    return Array.prototype.concat(data, neo);
+    //neo[0].symbol = "bNEO";
+    //return Array.prototype.concat(data, neo);
+    data.push({
+      hash: neo[0].hash,
+      symbol:"NEO",
+      unwrappedSymbol: "NEO",
+      usd_price: neo[0].usd_price
+    })
   }
   return data;
 }

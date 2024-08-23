@@ -48,7 +48,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "preact/
     function refreshPrices() {
         getFlamingoPriceFeed().then(data => {
             console.log("price-list > refreshPrices > completed", data);
-            exports.prices.value = data;
+            exports.prices.value = addMissingBNEO(data);
         });
     }
     function getFlamingoPriceFeed() {
@@ -57,10 +57,14 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "preact/
         });
     }
     function addMissingBNEO(data) {
-        var neo = data.filter(x => x.symbol === "NEO");
+        var neo = data.filter(x => x.symbol === "bNEO");
         if (neo.length === 1) {
-            neo[0].symbol = "bNEO";
-            return Array.prototype.concat(data, neo);
+            data.push({
+                hash: neo[0].hash,
+                symbol: "NEO",
+                unwrappedSymbol: "NEO",
+                usd_price: neo[0].usd_price
+            });
         }
         return data;
     }

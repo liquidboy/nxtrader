@@ -121,6 +121,7 @@ function WalletManagerImpl() {
   const aFUSDT = useSignal<Array<CAsset>>([]);
   const aFUSD = useSignal<Array<CAsset>>([]);
   const aNEO = useSignal<Array<CAsset>>([]);
+  const abNEO = useSignal<Array<CAsset>>([]);
   const aGAS = useSignal<Array<CAsset>>([]);
   const aFLM = useSignal<Array<CAsset>>([]);
   const aBTC = useSignal<Array<CAsset>>([]);
@@ -227,6 +228,7 @@ function WalletManagerImpl() {
     aFUSDT.value = [];
     aFUSD.value = [];
     aNEO.value = [];
+    abNEO.value = [];
     aGAS.value = [];
     aFLM.value = [];
     aBTC.value = [];
@@ -289,7 +291,7 @@ function WalletManagerImpl() {
       var result = await getN3AssetTxs(walletAddress, assetId);
       var watchlistFound = await transactionsDbService.getTransactions(asset_name);
       currentTransactions.value = { transactions: result, watchlist: watchlistFound, asset_name, assetId, walletAddress } as AssetTransactionsMessage;
-      // console.log("xxx assetSelected", watchlistFound);
+      console.log("wallet-manager > assetSelected", watchlistFound, currentTransactions.value);
     }
   }
 
@@ -344,7 +346,7 @@ function WalletManagerImpl() {
             case "fUSDT" : aFUSDT.value = [...aFUSDT.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "FUSD" : aFUSD.value = [...aFUSD.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "NEO" : aNEO.value = [...aNEO.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
-            case "bNEO" : aNEO.value = [...aNEO.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
+            case "bNEO" : abNEO.value = [...abNEO.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
             case "GAS" : aGAS.value = [...aGAS.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "FLM" : aFLM.value = [...aFLM.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "fWBTC" : aBTC.value = [...aBTC.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
@@ -383,7 +385,8 @@ function WalletManagerImpl() {
       addNewTotal("FUSD", aFUSD.value);
       addNewTotal("fUSDT", aFUSDT.value);
       addNewTotal("GAS", aGAS.value);
-      addNewTotal("bNEO", aNEO.value);
+      addNewTotal("bNEO", abNEO.value);
+      addNewTotal("NEO", aNEO.value);
       addNewTotal("FLM", aFLM.value);
       addNewTotal("fWBTC", aBTC.value);
       addNewTotal("fWETH", aETH.value);
@@ -470,7 +473,8 @@ function WalletManagerImpl() {
       <AssetCard wassetName="fUSDT" wasset={aFUSDT.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="FLM" wasset={aFLM.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="FLUND" wasset={aFLUND.value} prices={prices.value} onCardSelected={assetSelected} />
-      <AssetCard wassetName="bNEO" wasset={aNEO.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="bNEO" wasset={abNEO.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="NEO" wasset={aNEO.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="GAS" wasset={aGAS.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="fWBTC" wasset={aBTC.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="fWETH" wasset={aETH.value} prices={prices.value} onCardSelected={assetSelected} />

@@ -21,7 +21,7 @@ export function Content() {
     <div class="oj-web-applayout-max-width oj-web-applayout-content">
       <div className="oj-flex">
         <div class="first-column-content">
-          <dashboard-price-list pricesToShow={['fWBTC','fWETH','FLM','FLUND','bNEO','GAS','FUSD','fUSDT']} ></dashboard-price-list>
+          <dashboard-price-list pricesToShow={['fWBTC','fWETH','FLM','FLUND','bNEO','NEO','GAS','FUSD','fUSDT']} ></dashboard-price-list>
           <dashboard-ratio-list ratiosToShow={['bNEO/fWBTC','FLM/fWBTC','GAS/fWBTC','FLM/bNEO','GAS/bNEO','FLM/GAS']}></dashboard-ratio-list>
           <dashboard-watch-list></dashboard-watch-list>
         </div>

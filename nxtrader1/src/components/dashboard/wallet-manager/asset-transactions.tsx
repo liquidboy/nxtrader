@@ -85,7 +85,7 @@ export function AssetTransactions(
   const showAddAssetToWatchList = async (value: Transaction) => {
     showAssetManagerRoute({assetWatchlistEditorHidden: false});
     let tx = await _apiClient.getNeoTransaction(value.txid);
-    console.log("xxx tx", tx);
+    console.log("aeest-transactions > showAddAssetToWatchList", tx);
     seletedTransaction.value = { txDetail: tx, transaction: value, transactionType: "add", watchlist: [] };
   };
   const showEditAssetToWatchList = async (value: Transaction) => {

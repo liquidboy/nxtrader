@@ -46,7 +46,7 @@ function WalletPeekImpl(
           });
         });
     }
-    console.log("xxx ", balances);
+    console.log("wallet-peek > getAssetBalances ", balances);
     return balances;
   }
 

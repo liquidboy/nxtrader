@@ -33,7 +33,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     });
                 });
             }
-            console.log("xxx ", balances);
+            console.log("wallet-peek > getAssetBalances ", balances);
             return balances;
         }
         (0, signals_1.useSignalEffect)(() => {
