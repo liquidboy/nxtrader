@@ -217,7 +217,7 @@ export function WalletList(
         aria-label="wallets"
         data={dataProvider}
         gridlines={{item:"visible"}}
-        class="oj-sm-padding-3x-top oj-sm-padding-3x-start oj-sm-padding-3x-end" 
+        class="nx-wallet-list oj-sm-padding-3x-top oj-sm-padding-3x-start oj-sm-padding-3x-end" 
         selectionMode="none"
         onselectedChanged={walletSelected}
       >

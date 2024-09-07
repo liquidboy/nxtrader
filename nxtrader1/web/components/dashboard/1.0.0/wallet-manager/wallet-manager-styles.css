@@ -66,3 +66,9 @@ dashboard-wallet-manager[hidden]
 .tx-address {
   font-weight: bold;
 }
+
+.nx-wallet-list {
+  width: 67.5rem;
+  height: 28.5rem;
+  overflow-x: hidden;
+}
