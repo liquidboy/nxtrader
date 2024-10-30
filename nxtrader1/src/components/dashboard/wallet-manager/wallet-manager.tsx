@@ -119,13 +119,16 @@ function WalletManagerImpl() {
   const walletAssetTotals = useSignal<Array<WChartData>>([]);
   
   const aFUSDT = useSignal<Array<CAsset>>([]);
+  const aUSDT = useSignal<Array<CAsset>>([]);
   const aFUSD = useSignal<Array<CAsset>>([]);
   const aNEO = useSignal<Array<CAsset>>([]);
   const abNEO = useSignal<Array<CAsset>>([]);
   const aGAS = useSignal<Array<CAsset>>([]);
   const aFLM = useSignal<Array<CAsset>>([]);
-  const aBTC = useSignal<Array<CAsset>>([]);
-  const aETH = useSignal<Array<CAsset>>([]);
+  const aFWBTC = useSignal<Array<CAsset>>([]);
+  const aWBTC = useSignal<Array<CAsset>>([]);
+  const aFWETH = useSignal<Array<CAsset>>([]);
+  const aWETH = useSignal<Array<CAsset>>([]);
   const aFLUND = useSignal<Array<CAsset>>([]);
 
   useSignalEffect(() => {
@@ -226,13 +229,16 @@ function WalletManagerImpl() {
 
   function clearWalletsState() {
     aFUSDT.value = [];
+    aUSDT.value = [];
     aFUSD.value = [];
     aNEO.value = [];
     abNEO.value = [];
     aGAS.value = [];
     aFLM.value = [];
-    aBTC.value = [];
-    aETH.value = [];
+    aWBTC.value = [];
+    aFWBTC.value = [];
+    aFWETH.value = [];
+    aWETH.value = [];
     aFLUND.value = [];
     walletsMetadata.value.clear();
     walletAssetTotals.value=[];
@@ -343,14 +349,17 @@ function WalletManagerImpl() {
           let unitPriceFound = prices.value.find(p=>p.symbol === a.symbol);;   
           
           switch(a.symbol){
+            case "USDT" : aUSDT.value = [...aUSDT.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "fUSDT" : aFUSDT.value = [...aFUSDT.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "FUSD" : aFUSD.value = [...aFUSD.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "NEO" : aNEO.value = [...aNEO.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
             case "bNEO" : abNEO.value = [...abNEO.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; unitPriceFound = prices.value.find(p=>p.symbol === "bNEO"); break;
             case "GAS" : aGAS.value = [...aGAS.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "FLM" : aFLM.value = [...aFLM.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
-            case "fWBTC" : aBTC.value = [...aBTC.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
-            case "fWETH" : aETH.value = [...aETH.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "fWBTC" : aFWBTC.value = [...aFWBTC.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "WBTC" : aWBTC.value = [...aWBTC.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "fWETH" : aFWETH.value = [...aFWETH.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "WETH" : aWETH.value = [...aWETH.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "FLUND" : aFLUND.value = [...aFLUND.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             default: console.log(a.symbol);
           }
@@ -384,12 +393,15 @@ function WalletManagerImpl() {
 
       addNewTotal("FUSD", aFUSD.value);
       addNewTotal("fUSDT", aFUSDT.value);
+      addNewTotal("USDT", aUSDT.value);
       addNewTotal("GAS", aGAS.value);
       addNewTotal("bNEO", abNEO.value);
       addNewTotal("NEO", aNEO.value);
       addNewTotal("FLM", aFLM.value);
-      addNewTotal("fWBTC", aBTC.value);
-      addNewTotal("fWETH", aETH.value);
+      addNewTotal("fWBTC", aFWBTC.value);
+      addNewTotal("WBTC", aWBTC.value);
+      addNewTotal("fWETH", aFWETH.value);
+      addNewTotal("WETH", aWETH.value);
       addNewTotal("FLUND", aFLUND.value);
 
       walletAssetTotals.value = newTotals;
@@ -471,13 +483,16 @@ function WalletManagerImpl() {
     <div class="oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-sm-margin-5x-top">
       <AssetCard wassetName="FUSD" wasset={aFUSD.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="fUSDT" wasset={aFUSDT.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="USDT" wasset={aUSDT.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="FLM" wasset={aFLM.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="FLUND" wasset={aFLUND.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="bNEO" wasset={abNEO.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="NEO" wasset={aNEO.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="GAS" wasset={aGAS.value} prices={prices.value} onCardSelected={assetSelected} />
-      <AssetCard wassetName="fWBTC" wasset={aBTC.value} prices={prices.value} onCardSelected={assetSelected} />
-      <AssetCard wassetName="fWETH" wasset={aETH.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="fWBTC" wasset={aFWBTC.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="WBTC" wasset={aWBTC.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="fWETH" wasset={aFWETH.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="WETH" wasset={aWETH.value} prices={prices.value} onCardSelected={assetSelected} />
     </div>
   </div>
 }

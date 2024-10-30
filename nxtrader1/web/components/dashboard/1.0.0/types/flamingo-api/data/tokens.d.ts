@@ -74,12 +74,27 @@ declare const data: {
         decimals: number;
         hash: string;
     };
+    USDT: {
+        symbol: string;
+        decimals: number;
+        hash: string;
+    };
     fWETH: {
         symbol: string;
         decimals: number;
         hash: string;
     };
+    WETH: {
+        symbol: string;
+        decimals: number;
+        hash: string;
+    };
     fWBTC: {
+        symbol: string;
+        decimals: number;
+        hash: string;
+    };
+    WBTC: {
         symbol: string;
         decimals: number;
         hash: string;

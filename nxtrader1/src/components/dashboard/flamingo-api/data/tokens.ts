@@ -74,15 +74,30 @@ const data = {
     decimals: 6,
     hash: "0xcd48b160c1bbc9d74997b803b9a7ad50a4bef020",
   },
+  USDT: {
+    symbol: "USDT",
+    decimals: 6,
+    hash: "0x68b938cc42b6a2d54fb9040f5facf4290ebb8c5f",
+  },
   fWETH: {
     symbol: "fWETH",
     decimals: 18,
     hash: "0xc14b601252aa5dfa6166cf35fe5ccd2e35f3fdf5",
   },
+  WETH: {
+    symbol: "WETH",
+    decimals: 18,
+    hash: "0xd3a41b53888a733b549f5d4146e7a98d3285fa21",
+  },
   fWBTC: {
     symbol: "fWBTC",
     decimals: 8,
     hash: "0xd6abe115ecb75e1fa0b42f5e85934ce8c1ae2893",
+  },
+  WBTC: {
+    symbol: "WBTC",
+    decimals: 8,
+    hash: "0x4548a3bcb3c2b5ce42bf0559b1cf2f1ec97a51d0",
   },
   pONT: {
     symbol: "pONT",

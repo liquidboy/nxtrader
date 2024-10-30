@@ -11,7 +11,8 @@
     "@oracle/oraclejet-core-pack": "~15.1.0",
     "@preact/signals": "^1.2.2",
     "axios": "^1.6.8",
-    "bignumber.js": "^9.0.1"
+    "bignumber.js": "^9.0.1",
+    "grunt": "^1.6.1"
   },
   "devDependencies": {
     "@oracle/ojet-cli": "~15.1.0",
