@@ -30,7 +30,7 @@ type Props = Readonly<{
 function PriceListImpl(
   { pricesToShow }: Props
 ) {
-  const filteredPrices = prices.value.filter(function(x){
+  const filteredPrices = prices.value.sort((x,y)=>x.symbol.localeCompare(y.symbol)).filter(function(x){
     if(pricesToShow) {
       return pricesToShow.indexOf(x.symbol) >= 0;
     }
@@ -56,9 +56,8 @@ function PriceListImpl(
           <div>
             <div className="oj-flex">
               <span class={`oj-typography-body-md oj-text-color-primary`}>
-                {item.item.data.unwrappedSymbol}
+                {item.item.data.symbol}
               </span>
-              <span class="oj-typography-body-sm oj-text-color-secondary oj-md-padding-2x-start oj-sm-padding-1x-top">({item.item.data.symbol})</span>
             </div>
             <div style={{fontSize: 22}}>          
               {usdNumberConverter.format(item.item.data.usd_price)}

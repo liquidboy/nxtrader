@@ -17,7 +17,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "preact/
     let refreshTimerId = (0, signals_1.signal)(0);
     const _apiClient = new api_client_1.default();
     function PriceListImpl({ pricesToShow }) {
-        const filteredPrices = exports.prices.value.filter(function (x) {
+        const filteredPrices = exports.prices.value.sort((x, y) => x.symbol.localeCompare(y.symbol)).filter(function (x) {
             if (pricesToShow) {
                 return pricesToShow.indexOf(x.symbol) >= 0;
             }
@@ -35,7 +35,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "preact/
             maximumFractionDigits: 12,
         });
         const renderItem = (item) => {
-            return ((0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "oj-flex oj-sm-padding-2x" }, { children: [(0, jsx_runtime_1.jsx)("img", { src: `styles/images/${item.item.data.symbol}.svg`, class: "token" }), (0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "oj-flex" }, { children: [(0, jsx_runtime_1.jsx)("span", Object.assign({ class: `oj-typography-body-md oj-text-color-primary` }, { children: item.item.data.unwrappedSymbol })), (0, jsx_runtime_1.jsxs)("span", Object.assign({ class: "oj-typography-body-sm oj-text-color-secondary oj-md-padding-2x-start oj-sm-padding-1x-top" }, { children: ["(", item.item.data.symbol, ")"] }))] })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: { fontSize: 22 } }, { children: usdNumberConverter.format(item.item.data.usd_price) }))] })] })) }));
+            return ((0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "oj-flex oj-sm-padding-2x" }, { children: [(0, jsx_runtime_1.jsx)("img", { src: `styles/images/${item.item.data.symbol}.svg`, class: "token" }), (0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ className: "oj-flex" }, { children: (0, jsx_runtime_1.jsx)("span", Object.assign({ class: `oj-typography-body-md oj-text-color-primary` }, { children: item.item.data.symbol })) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: { fontSize: 22 } }, { children: usdNumberConverter.format(item.item.data.usd_price) }))] })] })) }));
         };
         (0, hooks_1.useEffect)(() => {
             refreshPrices();
