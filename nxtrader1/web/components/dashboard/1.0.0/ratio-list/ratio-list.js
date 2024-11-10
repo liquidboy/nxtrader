@@ -23,12 +23,23 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "./ratio
             const newRatios = [];
             if (price_list_1.prices && ((_a = price_list_1.prices === null || price_list_1.prices === void 0 ? void 0 : price_list_1.prices.value) === null || _a === void 0 ? void 0 : _a.length) > 0) {
                 ratiosToShow === null || ratiosToShow === void 0 ? void 0 : ratiosToShow.forEach(v => {
-                    const parts = v.split("/");
-                    const price1 = findPrice(parts[0]);
-                    const price2 = findPrice(parts[1]);
+                    const ratioParts = v.split("|");
+                    const partsA = ratioParts[0].split("/");
+                    const price1 = findPrice(partsA[0]);
+                    const price2 = findPrice(partsA[1]);
                     const ratio = price1[0].usd_price / price2[0].usd_price;
                     const ratioInvert = price2[0].usd_price / price1[0].usd_price;
-                    newRatios.push({ key: v, p1: parts[0], p2: parts[1], ratio, ratioInvert });
+                    let buySell = "";
+                    if (ratioParts[1] != undefined) {
+                        const partsB = ratioParts[1].split("/");
+                        if (ratioInvert <= parseFloat(partsB[0])) {
+                            buySell = `⭐ ${partsA[0]} is strong, convert ${partsA[0]} to ${partsA[1]}`;
+                        }
+                        else if (ratioInvert >= parseFloat(partsB[1])) {
+                            buySell = `⭐ ${partsA[1]} is strong, convert ${partsA[1]} to ${partsA[0]}`;
+                        }
+                    }
+                    newRatios.push({ key: ratioParts[0], p1: partsA[0], p2: partsA[1], ratio, ratioInvert, buySell });
                 });
             }
             if (newRatios.length > 0) {
@@ -50,7 +61,8 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "./ratio
                         id: parseInt(k),
                         seriesId: ri.key,
                         groupId: k,
-                        value: ri.ratioInvert
+                        value: ri.ratioInvert,
+                        buySell: ri.buySell
                     });
                 });
             });
@@ -66,7 +78,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "./ratio
         });
         return (0, jsx_runtime_1.jsx)("div", Object.assign({ class: "oj-sm-margin-3x-top " }, { children: (0, jsx_runtime_1.jsx)("oj-list-view", Object.assign({ id: "lvRatios", "aria-label": "flamingo price list", data: listDataProvider.value, class: "oj-listview-item-padding-off", "selection-mode": "none" }, { children: (0, jsx_runtime_1.jsx)("template", { slot: "itemTemplate", "data-oj-as": "item", render: (item) => {
                         var _a;
-                        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-md-margin-2x-top oj-md-padding-2x-start oj-md-padding-2x-end oj-md-margin-3x-bottom" }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ class: "oj-md-padding-2x-bottom oj-typography-body-lg oj-text-color-primary" }, { children: item.data.key })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-md-margin-2x-bottom" }, { children: [(0, jsx_runtime_1.jsx)("img", { src: `styles/images/${item.item.data.p1}.svg`, class: "card-small-token" }), (0, jsx_runtime_1.jsx)("img", { src: `styles/images/${item.item.data.p2}.svg`, class: "card-small-token" }), (0, jsx_runtime_1.jsx)("div", Object.assign({ class: "oj-sm-padding-1x-start" }, { children: item.item.data.ratioInvert }))] })), (0, jsx_runtime_1.jsx)(ratio_chart_1.RatioChart, { data: (_a = ratiosHistory.value.get(item.data.key)) !== null && _a !== void 0 ? _a : [] })] })));
+                        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-md-margin-2x-top oj-md-padding-2x-start oj-md-padding-2x-end oj-md-margin-6x-bottom" }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ class: "oj-md-padding-2x-bottom oj-typography-body-lg oj-text-color-primary" }, { children: item.data.key })), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-md-margin-2x-bottom" }, { children: [(0, jsx_runtime_1.jsx)("img", { src: `styles/images/${item.item.data.p1}.svg`, class: "card-small-token" }), (0, jsx_runtime_1.jsx)("img", { src: `styles/images/${item.item.data.p2}.svg`, class: "card-small-token" }), (0, jsx_runtime_1.jsx)("div", Object.assign({ class: "oj-sm-padding-1x-start" }, { children: item.item.data.ratioInvert }))] })), (0, jsx_runtime_1.jsx)(ratio_chart_1.RatioChart, { data: (_a = ratiosHistory.value.get(item.data.key)) !== null && _a !== void 0 ? _a : [] }), (0, jsx_runtime_1.jsx)("div", Object.assign({ class: "oj-md-padding-2x-top" }, { children: item.item.data.buySell }))] })));
                     } }) })) }));
     }
     exports.RatioList = (0, ojvcomponent_1.registerCustomElement)("dashboard-ratio-list", RatioListImpl, "RatioList", { "properties": { "ratiosToShow": { "type": "Array<string>" } } });

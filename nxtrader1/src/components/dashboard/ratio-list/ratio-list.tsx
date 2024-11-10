@@ -17,7 +17,8 @@ interface WChartData {
   id: number,
   seriesId: string,
   groupId: string,
-  value: number
+  value: number,
+  buySell: string,
 }
 
 
@@ -54,12 +55,24 @@ function RatioListImpl(
     const newRatios: Array<any> = [];
     if(prices && prices?.value?.length > 0){
       ratiosToShow?.forEach(v=>{
-        const parts = v.split("/");
-        const price1 = findPrice(parts[0]);
-        const price2 = findPrice(parts[1]);
+        const ratioParts = v.split("|");
+        const partsA = ratioParts[0].split("/");
+        const price1 = findPrice(partsA[0]);
+        const price2 = findPrice(partsA[1]);
         const ratio = price1[0].usd_price / price2[0].usd_price;
         const ratioInvert = price2[0].usd_price / price1[0].usd_price;
-        newRatios.push({key: v, p1: parts[0], p2: parts[1], ratio, ratioInvert});
+        let buySell = "";
+        if(ratioParts[1] != undefined) {
+          const partsB = ratioParts[1].split("/");
+          if(ratioInvert <= parseFloat(partsB[0])) {
+            buySell = `⭐ ${partsA[0]} is strong, convert ${partsA[0]} to ${partsA[1]}`;
+          } else if(ratioInvert >= parseFloat(partsB[1])) {
+            buySell = `⭐ ${partsA[1]} is strong, convert ${partsA[1]} to ${partsA[0]}`;
+          }
+        }
+        
+        newRatios.push({key: ratioParts[0], p1: partsA[0], p2: partsA[1], ratio, ratioInvert, buySell});
+
       });
     }
     if (newRatios.length > 0) {
@@ -81,7 +94,8 @@ function RatioListImpl(
           id: parseInt(k),
           seriesId: ri.key,
           groupId: k,
-          value: ri.ratioInvert
+          value: ri.ratioInvert,
+          buySell: ri.buySell
         });
       })
     });
@@ -109,7 +123,7 @@ function RatioListImpl(
       selection-mode="none"
       >
         <template slot="itemTemplate" data-oj-as="item" render={(item)=>{
-          return(<div class="oj-md-margin-2x-top oj-md-padding-2x-start oj-md-padding-2x-end oj-md-margin-3x-bottom">
+          return(<div class="oj-md-margin-2x-top oj-md-padding-2x-start oj-md-padding-2x-end oj-md-margin-6x-bottom">
             <div class="oj-md-padding-2x-bottom oj-typography-body-lg oj-text-color-primary">{item.data.key}</div>
             <div class="oj-flex oj-md-margin-2x-bottom">
               <img src={`styles/images/${item.item.data.p1}.svg`} class="card-small-token" />
@@ -117,6 +131,7 @@ function RatioListImpl(
               <div class="oj-sm-padding-1x-start" >{item.item.data.ratioInvert}</div>
             </div>
             <RatioChart data={ratiosHistory.value.get(item.data.key)??[]} ></RatioChart>
+            <div class="oj-md-padding-2x-top">{item.item.data.buySell}</div>
           </div>)
         }} />
     </oj-list-view>
