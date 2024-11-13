@@ -17,6 +17,7 @@ import "ojs/ojvalidationgroup";
 import "ojs/ojpopup";
 import "ojs/ojdrawerpopup";
 import { CWallet } from "./wallet-lib";
+import { WChartData } from "./wallet-charts";
 export declare const tags: Signal<Set<string>>;
 export declare const tagsAsArray: import("@preact/signals-core").ReadonlySignal<{
     name: string;
@@ -25,6 +26,8 @@ export declare const tagsAsArray: import("@preact/signals-core").ReadonlySignal<
 export declare const selectedTags: Signal<string[]>;
 export declare const walletsRaw: Signal<CWallet[]>;
 export declare const wallets: import("@preact/signals-core").ReadonlySignal<CWallet[]>;
+export declare const walletsMetadata: Signal<Map<string, {}>>;
+export declare const walletAssetTotals: Signal<WChartData[]>;
 export declare function refreshCurrentSelectedAssetTransactions(): Promise<void>;
 declare function WalletManagerImpl(): h.JSX.Element;
 export declare const WalletManager: ComponentType<ExtendGlobalProps<ComponentProps<typeof WalletManagerImpl>>>;

@@ -43,13 +43,13 @@ const tooltipRenderer = (ctx: ojStatusMeterGauge.TooltipContext) => {
       goal⠀⠀⠀⠀⠀ (USDT) : ${ctx.componentElement.getAttribute("data-goalUsdt")}` }
 };
 
-export function WatchListItem(item: StoredTransactionRecord, deleteItenAction: (value: ojButtonEventMap<any>["ojAction"]) => void) {
-    const unitPriceFound = prices.value.find(p=>p.symbol === item.symbol);
-    const unitPriceInUsd = unitPriceFound ? unitPriceFound.usd_price : 0;
-    const curPriceInUsdt = parseFloat(item.value) * unitPriceInUsd;
+export function WatchListItem(item: any, deleteItenAction: (value: ojButtonEventMap<any>["ojAction"]) => void) {
+    // const unitPriceFound = prices.value.find(p=>p.symbol === item.symbol);
+    const unitPriceInUsd = item.unitPriceInUsd; //unitPriceFound ? unitPriceFound.usd_price : 0;
+    const curPriceInUsdt = item.curPriceInUsdt; //parseFloat(item.value) * unitPriceInUsd;
     const purchaseCostUsdt = item.purchaseCostUsdt;
     const goalUsdt = item.goalUsdt;
-    const profitInUsdt = curPriceInUsdt-purchaseCostUsdt;
+    const profitInUsdt = item.profitInUsdt; //curPriceInUsdt-purchaseCostUsdt;
    
     return (<li class="oj-md-padding-3x-top oj-md-padding-3x-bottom">
                 <div class="oj-flex oj-flex oj-text-primary-color oj-typography-body-md">

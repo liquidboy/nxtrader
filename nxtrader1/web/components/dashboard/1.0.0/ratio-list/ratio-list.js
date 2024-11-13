@@ -33,10 +33,10 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "./ratio
                     if (ratioParts[1] != undefined) {
                         const partsB = ratioParts[1].split("/");
                         if (ratioInvert <= parseFloat(partsB[0])) {
-                            buySell = `⭐ ${partsA[0]} is strong, convert ${partsA[0]} to ${partsA[1]}`;
+                            buySell = `👴 ${partsA[0]} is strong, convert ${partsA[0]} to ${partsA[1]}`;
                         }
                         else if (ratioInvert >= parseFloat(partsB[1])) {
-                            buySell = `⭐ ${partsA[1]} is strong, convert ${partsA[1]} to ${partsA[0]}`;
+                            buySell = `👴 ${partsA[1]} is strong, convert ${partsA[1]} to ${partsA[0]}`;
                         }
                     }
                     newRatios.push({ key: ratioParts[0], p1: partsA[0], p2: partsA[1], ratio, ratioInvert, buySell });

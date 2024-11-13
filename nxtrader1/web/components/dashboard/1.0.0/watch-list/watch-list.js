@@ -15,7 +15,17 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "dashboa
     function tryLoadTransactionsInWatchlist() {
         setTimeout(() => {
             transactionsDbService_1.default.getAllTransactions().then(result => {
-                watchlist.value = result.sort((x, y) => x.value - y.value);
+                function conv(s) {
+                    const unitPriceFound = price_list_1.prices.value.find(p => p.symbol === s.symbol);
+                    const unitPriceInUsd = unitPriceFound ? unitPriceFound.usd_price : 0;
+                    const curPriceInUsdt = parseFloat(s.value) * unitPriceInUsd;
+                    const purchaseCostUsdt = s.purchaseCostUsdt;
+                    const goalUsdt = s.goalUsdt;
+                    const profitInUsdt = curPriceInUsdt - purchaseCostUsdt;
+                    return Object.assign(Object.assign({}, s), { profitInUsdt, curPriceInUsdt, unitPriceInUsd });
+                }
+                const r2 = result.map((x, y) => conv(x));
+                watchlist.value = r2.sort((x, y) => y.profitInUsdt - x.profitInUsdt);
             });
         }, 1000);
     }
@@ -30,7 +40,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "dashboa
         });
     }
     function WatchListImpl() {
-        console.log("watch-list > render");
+        console.log("watch-list > render", watchlist.value);
         const dataProvider = new ArrayDataProvider(watchlist.value, {
             keyAttributes: "id",
         });

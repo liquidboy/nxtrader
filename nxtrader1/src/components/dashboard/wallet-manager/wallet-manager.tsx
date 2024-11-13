@@ -82,6 +82,11 @@ export const wallets = computed(()=>{
   return found;
 });
 
+// wallet data
+export const walletsMetadata = signal<Map<string,{}>>(new Map());
+export const walletAssetTotals = signal<Array<WChartData>>([]);
+
+
 function updateWallets(force?: boolean, postUpdateWallets? : () => void) {
   const existingWallets = loadWalletsFromStorage();
   console.log(`wallet-manager > updateWallets ${existingWallets.length}`);
@@ -115,8 +120,8 @@ export async function refreshCurrentSelectedAssetTransactions() {
  * 
  */
 function WalletManagerImpl() {
-  const walletsMetadata = useSignal<Map<string,{}>>(new Map());
-  const walletAssetTotals = useSignal<Array<WChartData>>([]);
+  //const walletsMetadata = useSignal<Map<string,{}>>(new Map());
+  //const walletAssetTotals = useSignal<Array<WChartData>>([]);
   
   const aFUSDT = useSignal<Array<CAsset>>([]);
   const aUSDT = useSignal<Array<CAsset>>([]);

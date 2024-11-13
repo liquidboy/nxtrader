@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact/signals", "ojs/ojcolor", "./asset-card", "./wallet-lib", "./wallet-list", "./wallet-charts", "./wallet-editor", "dashboard/price-list/price-list", "dashboard/notifications-layer/notifications-layer", "ojs/ojcolor", "./asset-manager", "dashboard/flamingo-api/indexdb/transactionsDbService", "./form-elements", "css!dashboard/wallet-manager/wallet-manager-styles.css", "ojs/ojchart", "ojs/ojactioncard", "ojs/ojcolorspectrum", "ojs/ojlistview", "ojs/ojlistitemlayout", "ojs/ojinputtext", "ojs/ojbutton", "ojs/ojformlayout", "ojs/ojvalidationgroup", "ojs/ojpopup", "ojs/ojdrawerpopup"], function (require, exports, jsx_runtime_1, ojvcomponent_1, signals_1, ojcolor_1, asset_card_1, wallet_lib_1, wallet_list_1, wallet_charts_1, wallet_editor_1, price_list_1, notifications_layer_1, Color, asset_manager_1, transactionsDbService_1, form_elements_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getWallet = exports.WalletManager = exports.refreshCurrentSelectedAssetTransactions = exports.wallets = exports.walletsRaw = exports.selectedTags = exports.tagsAsArray = exports.tags = void 0;
+    exports.getWallet = exports.WalletManager = exports.refreshCurrentSelectedAssetTransactions = exports.walletAssetTotals = exports.walletsMetadata = exports.wallets = exports.walletsRaw = exports.selectedTags = exports.tagsAsArray = exports.tags = void 0;
     const refreshEvery1Minute = 60000;
     let refreshIntervalId = undefined;
     const currentTransactions = (0, signals_1.signal)(undefined);
@@ -37,6 +37,8 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
         console.log("wallet-manager > wallets > computed");
         return found;
     });
+    exports.walletsMetadata = (0, signals_1.signal)(new Map());
+    exports.walletAssetTotals = (0, signals_1.signal)([]);
     function updateWallets(force, postUpdateWallets) {
         const existingWallets = (0, wallet_lib_1.loadWalletsFromStorage)();
         console.log(`wallet-manager > updateWallets ${existingWallets.length}`);
@@ -62,8 +64,6 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
     }
     exports.refreshCurrentSelectedAssetTransactions = refreshCurrentSelectedAssetTransactions;
     function WalletManagerImpl() {
-        const walletsMetadata = (0, signals_1.useSignal)(new Map());
-        const walletAssetTotals = (0, signals_1.useSignal)([]);
         const aFUSDT = (0, signals_1.useSignal)([]);
         const aUSDT = (0, signals_1.useSignal)([]);
         const aFUSD = (0, signals_1.useSignal)([]);
@@ -170,8 +170,8 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             aFWETH.value = [];
             aWETH.value = [];
             aFLUND.value = [];
-            walletsMetadata.value.clear();
-            walletAssetTotals.value = [];
+            exports.walletsMetadata.value.clear();
+            exports.walletAssetTotals.value = [];
         }
         function close() {
             const fe = getFormElements();
@@ -309,7 +309,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                             runningWalletTotalInUsd += parseFloat(a.balance) * unitPriceInUsd;
                         }
                     });
-                    walletsMetadata.value.set(w.name, { runningWalletTotalInUsd, goal: w.goal });
+                    exports.walletsMetadata.value.set(w.name, { runningWalletTotalInUsd, goal: w.goal });
                     const newTotals = [];
                     function addNewTotal(assetName, asset) {
                         const unitPriceFound = price_list_1.prices.value.find(p => p.symbol === assetName);
@@ -341,7 +341,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     addNewTotal("fWETH", aFWETH.value);
                     addNewTotal("WETH", aWETH.value);
                     addNewTotal("FLUND", aFLUND.value);
-                    walletAssetTotals.value = newTotals;
+                    exports.walletAssetTotals.value = newTotals;
                 }
                 ;
                 refreshAllTags();
@@ -388,7 +388,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                             (0, asset_manager_1.showAssetManagerRoute)({ assetTransactionsHidden: false });
                         }
                         ;
-                    } }, { children: (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(asset_manager_1.AssetManager, { transactions: currentTransactions.value }) }) })), (0, jsx_runtime_1.jsx)("oj-drawer-popup", Object.assign({ id: "de", edge: "start", class: "drawerEditor", onojBeforeClose: close }, { children: (0, jsx_runtime_1.jsx)(wallet_editor_1.WalletEditor, { tryCreate: tryCreate, tryUpdate: tryUpdate, clear: clear, close: close, showAddWallet: showAddWallet, refreshAllWalletBalances: refreshAllWalletBalances }) })), (0, jsx_runtime_1.jsx)(wallet_list_1.WalletList, { wallets: exports.wallets.value, walletsMetadata: walletsMetadata.value, walletSelected: walletSelected, tryDeleteWallet: tryDeleteWallet, showAddWallet: showAddWallet, showEditWallet: showEditWallet, refreshAllWalletBalances: refreshAllWalletBalances }), (0, jsx_runtime_1.jsx)(wallet_charts_1.WalletCharts, { chartData: walletAssetTotals.value }), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-sm-margin-5x-top" }, { children: [(0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FUSD", wasset: aFUSD.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fUSDT", wasset: aFUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "USDT", wasset: aUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLM", wasset: aFLM.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLUND", wasset: aFLUND.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "bNEO", wasset: abNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "NEO", wasset: aNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "GAS", wasset: aGAS.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWBTC", wasset: aFWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WBTC", wasset: aWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWETH", wasset: aFWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WETH", wasset: aWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected })] }))] });
+                    } }, { children: (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(asset_manager_1.AssetManager, { transactions: currentTransactions.value }) }) })), (0, jsx_runtime_1.jsx)("oj-drawer-popup", Object.assign({ id: "de", edge: "start", class: "drawerEditor", onojBeforeClose: close }, { children: (0, jsx_runtime_1.jsx)(wallet_editor_1.WalletEditor, { tryCreate: tryCreate, tryUpdate: tryUpdate, clear: clear, close: close, showAddWallet: showAddWallet, refreshAllWalletBalances: refreshAllWalletBalances }) })), (0, jsx_runtime_1.jsx)(wallet_list_1.WalletList, { wallets: exports.wallets.value, walletsMetadata: exports.walletsMetadata.value, walletSelected: walletSelected, tryDeleteWallet: tryDeleteWallet, showAddWallet: showAddWallet, showEditWallet: showEditWallet, refreshAllWalletBalances: refreshAllWalletBalances }), (0, jsx_runtime_1.jsx)(wallet_charts_1.WalletCharts, { chartData: exports.walletAssetTotals.value }), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-sm-margin-5x-top" }, { children: [(0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FUSD", wasset: aFUSD.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fUSDT", wasset: aFUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "USDT", wasset: aUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLM", wasset: aFLM.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLUND", wasset: aFLUND.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "bNEO", wasset: abNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "NEO", wasset: aNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "GAS", wasset: aGAS.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWBTC", wasset: aFWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WBTC", wasset: aWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWETH", wasset: aFWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WETH", wasset: aWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected })] }))] });
     }
     exports.WalletManager = (0, ojvcomponent_1.registerCustomElement)("dashboard-wallet-manager", WalletManagerImpl, "WalletManager");
     function getWallet(address) {

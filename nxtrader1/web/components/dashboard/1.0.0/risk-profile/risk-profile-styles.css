@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-risk-profile .dashboard-risk-profile-value-text {
+   color: var(--dashboard-risk-profile-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-risk-profile:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-risk-profile{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-risk-profile[hidden]
+{
+  display: none;
+}

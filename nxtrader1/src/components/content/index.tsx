@@ -14,9 +14,9 @@ import "dashboard/bot-maintainer/loader"
 import "dashboard/wallet-peek/loader";
 import "dashboard/watch-list/loader";
 import "dashboard/flamingo-api/loader";
+import "dashboard/risk-profile/loader";
 
 export function Content() {
-
   return (
     <div class="oj-web-applayout-max-width oj-web-applayout-content">
       <div className="oj-flex">
@@ -28,6 +28,7 @@ export function Content() {
         <div class="oj-flex-item wallet-manager-content">
           <dashboard-wallet-manager></dashboard-wallet-manager>
           <dashboard-bot-maintainer></dashboard-bot-maintainer>
+          <dashboard-risk-profile high={['FLM','FLUND','bNEO','NEO','GAS']} low={['WBTC','WETH']} stable={['FUSD','USDT']}></dashboard-risk-profile>
         </div>
       </div>
       <dashboard-notifications-layer></dashboard-notifications-layer>
