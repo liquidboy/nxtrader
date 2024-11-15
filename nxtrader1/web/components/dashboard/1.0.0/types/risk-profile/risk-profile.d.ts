@@ -6,6 +6,7 @@ import { ComponentProps, ComponentType } from "preact";
 import "css!dashboard/risk-profile/risk-profile-styles.css";
 type Props = Readonly<{
     low?: Array<string>;
+    medium?: Array<string>;
     high?: Array<string>;
     stables?: Array<string>;
 }>;
@@ -24,16 +25,19 @@ export interface RiskProfileElement extends JetElement<RiskProfileElementSettabl
 export namespace RiskProfileElement {
     type highChanged = JetElementCustomEventStrict<RiskProfileElement['high']>;
     type lowChanged = JetElementCustomEventStrict<RiskProfileElement['low']>;
+    type mediumChanged = JetElementCustomEventStrict<RiskProfileElement['medium']>;
     type stablesChanged = JetElementCustomEventStrict<RiskProfileElement['stables']>;
 }
 export interface RiskProfileElementEventMap extends HTMLElementEventMap {
     'highChanged': JetElementCustomEventStrict<RiskProfileElement['high']>;
     'lowChanged': JetElementCustomEventStrict<RiskProfileElement['low']>;
+    'mediumChanged': JetElementCustomEventStrict<RiskProfileElement['medium']>;
     'stablesChanged': JetElementCustomEventStrict<RiskProfileElement['stables']>;
 }
 export interface RiskProfileElementSettableProperties extends JetSettableProperties {
     high?: Props['high'];
     low?: Props['low'];
+    medium?: Props['medium'];
     stables?: Props['stables'];
 }
 export interface RiskProfileElementSettablePropertiesLenient extends Partial<RiskProfileElementSettableProperties> {
@@ -42,6 +46,7 @@ export interface RiskProfileElementSettablePropertiesLenient extends Partial<Ris
 export interface RiskProfileIntrinsicProps extends Partial<Readonly<RiskProfileElementSettableProperties>>, GlobalProps, Pick<preact.JSX.HTMLAttributes, 'ref' | 'key'> {
     onhighChanged?: (value: RiskProfileElementEventMap['highChanged']) => void;
     onlowChanged?: (value: RiskProfileElementEventMap['lowChanged']) => void;
+    onmediumChanged?: (value: RiskProfileElementEventMap['mediumChanged']) => void;
     onstablesChanged?: (value: RiskProfileElementEventMap['stablesChanged']) => void;
 }
 declare global {

@@ -28,7 +28,7 @@ export function Content() {
         <div class="oj-flex-item wallet-manager-content">
           <dashboard-wallet-manager></dashboard-wallet-manager>
           <dashboard-bot-maintainer></dashboard-bot-maintainer>
-          <dashboard-risk-profile high={['FLM','FLUND','bNEO','NEO','GAS']} low={['WBTC','WETH']} stable={['FUSD','USDT']}></dashboard-risk-profile>
+          <dashboard-risk-profile high={['FLM','FLUND','GAS']} medium={['NEO','bNEO','WETH']} low={['WBTC']} stables={['FUSD','USDT']}></dashboard-risk-profile>
         </div>
       </div>
       <dashboard-notifications-layer></dashboard-notifications-layer>

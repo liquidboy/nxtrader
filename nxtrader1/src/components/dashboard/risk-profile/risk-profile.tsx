@@ -4,10 +4,12 @@ import componentStrings = require("ojL10n!./resources/nls/risk-profile-strings")
 import "css!dashboard/risk-profile/risk-profile-styles.css";
 import { WChartData } from "dashboard/wallet-manager/wallet-charts";
 import { walletAssetTotals } from "dashboard/wallet-manager/wallet-manager";
-import { useSignalEffect } from "@preact/signals";
+import { useSignal, useSignalEffect } from "@preact/signals";
+import { ChartItem } from "./chart-item";
 
 type Props = Readonly<{
   low?: Array<string>;
+  medium?: Array<string>;
   high?: Array<string>;
   stables?: Array<string>;
 }>;
@@ -22,17 +24,43 @@ type Props = Readonly<{
 function RiskProfileImpl(
   props: Props
 ) {
-  
-  
-
-
+  const stablesData = useSignal<Array<WChartData>>([]);
+  const highRiskData = useSignal<Array<WChartData>>([]);
+  const mediumRiskData = useSignal<Array<WChartData>>([]);
+  const lowRiskData = useSignal<Array<WChartData>>([]);
+    
   useSignalEffect(()=>{
     if(walletAssetTotals.value) {
-      console.log("risk-profile > useSignalEffect > walletAssetTotals.value", walletAssetTotals.value, props);
+      const assets = walletAssetTotals.value?.filter(y=>y.groupId[0]==="0");
+      const stables = assets?.filter(x=>props.stables.includes(x.seriesId.toString()));
+      const high = assets?.filter(x=>props.high.includes(x.seriesId.toString()));
+      const medium = assets?.filter(x=>props.medium.includes(x.seriesId.toString()));
+      const low = assets?.filter(x=>props.low.includes(x.seriesId.toString()));
+   
+      console.log("risk-profile > useSignalEffect > walletAssetTotals.value", stables.length, high, medium, low);
+      //stables.forEach(x=>data.value.push(x));
+      stablesData.value= stables;
+      highRiskData.value = high;
+      mediumRiskData.value = medium;
+      lowRiskData.value = low;
     }
   })
 
-  return <p>{props.high}</p>
+  return (
+    <div className="oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end">
+      <div style="width:300px;" className="oj-flex-item">
+        <ChartItem id="low" title="Low Risk" data={lowRiskData.value}></ChartItem>
+      </div>
+      <div style="width:300px;"  className="oj-flex-item">
+        <ChartItem id="medium" title="Medium Risk" data={mediumRiskData.value}></ChartItem>
+      </div>
+      <div style="width:300px;" className="oj-flex-item">
+        <ChartItem id="high" title="High Risk" data={highRiskData.value}></ChartItem>
+      </div>
+      <div style="width:300px;" className="oj-flex-item oj-md-margin-6x-top ">
+      <ChartItem id="stables"title="Stables (Near zero risk)"  data={stablesData.value}></ChartItem>
+      </div>
+    </div>)
 }
 
 export const RiskProfile: ComponentType <
