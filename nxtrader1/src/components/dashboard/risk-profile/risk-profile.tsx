@@ -28,6 +28,8 @@ function RiskProfileImpl(
   const highRiskData = useSignal<Array<WChartData>>([]);
   const mediumRiskData = useSignal<Array<WChartData>>([]);
   const lowRiskData = useSignal<Array<WChartData>>([]);
+
+  const chartSize = "width:257px; height:200px;";
     
   useSignalEffect(()=>{
     if(walletAssetTotals.value) {
@@ -47,18 +49,18 @@ function RiskProfileImpl(
   })
 
   return (
-    <div className="oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end">
-      <div style="width:300px;" className="oj-flex-item">
-        <ChartItem id="low" title="Low Risk" data={lowRiskData.value}></ChartItem>
+    <div className="oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-md-margin-6x-top">
+      <div style={chartSize} className="oj-flex-item">
+        <ChartItem id="stables"title="Stables (Near zero risk)"  data={stablesData.value} style={chartSize}></ChartItem>
       </div>
-      <div style="width:300px;"  className="oj-flex-item">
-        <ChartItem id="medium" title="Medium Risk" data={mediumRiskData.value}></ChartItem>
+      <div style={chartSize} className="oj-flex-item">
+        <ChartItem id="low" title="Low Risk" data={lowRiskData.value} style={chartSize}></ChartItem>
       </div>
-      <div style="width:300px;" className="oj-flex-item">
-        <ChartItem id="high" title="High Risk" data={highRiskData.value}></ChartItem>
+      <div style={chartSize} className="oj-flex-item">
+        <ChartItem id="medium" title="Medium Risk" data={mediumRiskData.value} style={chartSize}></ChartItem>
       </div>
-      <div style="width:300px;" className="oj-flex-item oj-md-margin-6x-top ">
-      <ChartItem id="stables"title="Stables (Near zero risk)"  data={stablesData.value}></ChartItem>
+      <div style={chartSize} className="oj-flex-item">
+        <ChartItem id="high" title="High Risk" data={highRiskData.value} style={chartSize}></ChartItem>
       </div>
     </div>)
 }

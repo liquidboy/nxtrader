@@ -7,6 +7,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "dashboa
         const highRiskData = (0, signals_1.useSignal)([]);
         const mediumRiskData = (0, signals_1.useSignal)([]);
         const lowRiskData = (0, signals_1.useSignal)([]);
+        const chartSize = "width:257px; height:200px;";
         (0, signals_1.useSignalEffect)(() => {
             var _a;
             if (wallet_manager_1.walletAssetTotals.value) {
@@ -22,7 +23,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "dashboa
                 lowRiskData.value = low;
             }
         });
-        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end" }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ style: "width:300px;", className: "oj-flex-item" }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "low", title: "Low Risk", data: lowRiskData.value }) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: "width:300px;", className: "oj-flex-item" }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "medium", title: "Medium Risk", data: mediumRiskData.value }) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: "width:300px;", className: "oj-flex-item" }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "high", title: "High Risk", data: highRiskData.value }) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: "width:300px;", className: "oj-flex-item oj-md-margin-6x-top " }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "stables", title: "Stables (Near zero risk)", data: stablesData.value }) }))] })));
+        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ className: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-md-margin-6x-top" }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ style: chartSize, className: "oj-flex-item" }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "stables", title: "Stables (Near zero risk)", data: stablesData.value, style: chartSize }) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: chartSize, className: "oj-flex-item" }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "low", title: "Low Risk", data: lowRiskData.value, style: chartSize }) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: chartSize, className: "oj-flex-item" }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "medium", title: "Medium Risk", data: mediumRiskData.value, style: chartSize }) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: chartSize, className: "oj-flex-item" }, { children: (0, jsx_runtime_1.jsx)(chart_item_1.ChartItem, { id: "high", title: "High Risk", data: highRiskData.value, style: chartSize }) }))] })));
     }
     exports.RiskProfile = (0, ojvcomponent_1.registerCustomElement)("dashboard-risk-profile", RiskProfileImpl, "RiskProfile", { "properties": { "low": { "type": "Array<string>" }, "medium": { "type": "Array<string>" }, "high": { "type": "Array<string>" }, "stables": { "type": "Array<string>" } } });
 });

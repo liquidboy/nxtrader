@@ -5,6 +5,7 @@ type Props = Readonly<{
     id: string;
     title: string;
     data: Array<WChartData>;
+    style: string;
   }>;
 export function ChartItem(props: Props) {
     const chartDataProvider = new ArrayDataProvider(props.data, {
@@ -16,6 +17,8 @@ export function ChartItem(props: Props) {
         data={chartDataProvider}
         animation-on-display="auto"
         animation-on-data-change="auto"
+        legend={{rendered: "off"}}
+        style={props.style}
       >
         <template slot="itemTemplate" data-oj-as="item" render={(item)=>{
           return(<oj-chart-item value={item.data.value} groupId={item.data.groupId} seriesId={item.data.seriesId}></oj-chart-item>);

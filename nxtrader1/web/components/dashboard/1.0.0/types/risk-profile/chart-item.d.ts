@@ -3,6 +3,7 @@ type Props = Readonly<{
     id: string;
     title: string;
     data: Array<WChartData>;
+    style: string;
 }>;
 export declare function ChartItem(props: Props): import("preact").JSX.Element;
 export {};
