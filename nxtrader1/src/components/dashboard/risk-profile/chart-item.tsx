@@ -1,3 +1,4 @@
+import { ojChart } from "@oracle/oraclejet/ojchart";
 import { useSignal } from "@preact/signals";
 import { WChartData } from "dashboard/wallet-manager/wallet-charts";
 import * as ArrayDataProvider from "ojs/ojarraydataprovider";
@@ -6,6 +7,7 @@ type Props = Readonly<{
     title: string;
     data: Array<WChartData>;
     style: string;
+    chartType: ojChart.ChartType;
   }>;
 export function ChartItem(props: Props) {
     const chartDataProvider = new ArrayDataProvider(props.data, {
@@ -13,8 +15,9 @@ export function ChartItem(props: Props) {
     });
     return (<div><oj-chart
         id={props.id}
-        type="pyramid"
+        type={props.chartType}
         data={chartDataProvider}
+        orientation="horizontal"
         animation-on-display="auto"
         animation-on-data-change="auto"
         legend={{rendered: "off"}}

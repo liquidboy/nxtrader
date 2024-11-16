@@ -28,6 +28,7 @@ function RiskProfileImpl(
   const highRiskData = useSignal<Array<WChartData>>([]);
   const mediumRiskData = useSignal<Array<WChartData>>([]);
   const lowRiskData = useSignal<Array<WChartData>>([]);
+  const totalData = useSignal<Array<WChartData>>([]);
 
   const chartSize = "width:257px; height:200px;";
     
@@ -38,29 +39,45 @@ function RiskProfileImpl(
       const high = assets?.filter(x=>props.high.includes(x.seriesId.toString()));
       const medium = assets?.filter(x=>props.medium.includes(x.seriesId.toString()));
       const low = assets?.filter(x=>props.low.includes(x.seriesId.toString()));
+
+      const total : Array<WChartData> = [];
+
+      const totalStables = stables.reduce((x,y) => x + y.value,0);
+      const totalLow = low.reduce((x,y) => x + y.value,0);
+      const totalMedium = medium.reduce((x,y) => x + y.value,0);
+      const totalHigh = high.reduce((x,y) => x + y.value,0);
+
+      total.push({id:1, value: totalStables, seriesId: ["Stables"], groupId: ["0"] });
+      total.push({id:2, value: totalLow, seriesId: ["Low"], groupId: ["0"] });
+      total.push({id:3, value: totalMedium, seriesId: ["Medium"], groupId: ["0"] });
+      total.push({id:4, value: totalHigh, seriesId: ["High"], groupId: ["0"] });
    
       console.log("risk-profile > useSignalEffect > walletAssetTotals.value", stables.length, high, medium, low);
-      //stables.forEach(x=>data.value.push(x));
+
       stablesData.value= stables;
       highRiskData.value = high;
       mediumRiskData.value = medium;
       lowRiskData.value = low;
+      totalData.value = total;
     }
   })
 
   return (
     <div className="oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-md-margin-6x-top">
       <div style={chartSize} className="oj-flex-item">
-        <ChartItem id="stables"title="Stables (Near zero risk)"  data={stablesData.value} style={chartSize}></ChartItem>
+        <ChartItem id="stables"title="Stables (Near zero risk)"  data={stablesData.value} style={chartSize} chartType="pyramid"></ChartItem>
       </div>
       <div style={chartSize} className="oj-flex-item">
-        <ChartItem id="low" title="Low Risk" data={lowRiskData.value} style={chartSize}></ChartItem>
+        <ChartItem id="low" title="Low Risk" data={lowRiskData.value} style={chartSize} chartType="pyramid"></ChartItem>
       </div>
       <div style={chartSize} className="oj-flex-item">
-        <ChartItem id="medium" title="Medium Risk" data={mediumRiskData.value} style={chartSize}></ChartItem>
+        <ChartItem id="medium" title="Medium Risk" data={mediumRiskData.value} style={chartSize} chartType="pyramid"></ChartItem>
       </div>
       <div style={chartSize} className="oj-flex-item">
-        <ChartItem id="high" title="High Risk" data={highRiskData.value} style={chartSize}></ChartItem>
+        <ChartItem id="high" title="High Risk" data={highRiskData.value} style={chartSize} chartType="pyramid"></ChartItem>
+      </div>
+      <div style="width:1000px; height:400px;" className="oj-flex-item oj-lg-padding-8x-top">
+        <ChartItem id="total" title="" data={totalData.value} style="width:1000px; height:400px;" chartType="funnel"></ChartItem>
       </div>
     </div>)
 }
