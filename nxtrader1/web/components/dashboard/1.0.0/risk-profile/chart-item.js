@@ -6,7 +6,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojarraydataprovider"], 
         const chartDataProvider = new ArrayDataProvider(props.data, {
             keyAttributes: "id",
         });
-        return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("oj-chart", Object.assign({ id: props.id, type: props.chartType, data: chartDataProvider, orientation: "horizontal", "animation-on-display": "auto", "animation-on-data-change": "auto", legend: { rendered: "off" }, style: props.style }, { children: (0, jsx_runtime_1.jsx)("template", { slot: "itemTemplate", "data-oj-as": "item", render: (item) => {
+        return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("oj-chart", Object.assign({ id: props.id, type: props.chartType, data: chartDataProvider, orientation: props.orientation, "animation-on-display": "auto", "animation-on-data-change": "auto", legend: { rendered: "off" }, style: props.style }, { children: (0, jsx_runtime_1.jsx)("template", { slot: "itemTemplate", "data-oj-as": "item", render: (item) => {
                             return ((0, jsx_runtime_1.jsx)("oj-chart-item", { value: item.data.value, groupId: item.data.groupId, seriesId: item.data.seriesId }));
                         } }) })), (0, jsx_runtime_1.jsx)("div", Object.assign({ style: "text-align:center" }, { children: props.title }))] }));
     }

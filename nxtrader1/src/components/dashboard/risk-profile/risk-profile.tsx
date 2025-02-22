@@ -77,7 +77,7 @@ function RiskProfileImpl(
         <ChartItem id="high" title="High Risk" data={highRiskData.value} style={chartSize} chartType="pyramid"></ChartItem>
       </div>
       <div style="width:1000px; height:400px;" className="oj-flex-item oj-lg-padding-8x-top">
-        <ChartItem id="total" title="" data={totalData.value} style="width:1000px; height:400px;" chartType="funnel"></ChartItem>
+        <ChartItem id="total" title="" data={totalData.value} style="width:1000px; height:400px;" chartType="funnel" orientation="horizontal"></ChartItem>
       </div>
     </div>)
 }

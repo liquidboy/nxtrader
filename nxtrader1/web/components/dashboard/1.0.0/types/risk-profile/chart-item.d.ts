@@ -6,6 +6,7 @@ type Props = Readonly<{
     data: Array<WChartData>;
     style: string;
     chartType: ojChart.ChartType;
+    orientation?: 'horizontal' | 'vertical';
 }>;
 export declare function ChartItem(props: Props): import("preact").JSX.Element;
 export {};
