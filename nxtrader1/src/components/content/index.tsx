@@ -15,12 +15,14 @@ import "dashboard/wallet-peek/loader";
 import "dashboard/watch-list/loader";
 import "dashboard/flamingo-api/loader";
 import "dashboard/risk-profile/loader";
+import "dashboard/bitrue-tools/loader";
 
 export function Content() {
   return (
     <div class="oj-web-applayout-max-width oj-web-applayout-content">
       <div className="oj-flex">
         <div class="first-column-content">
+          <dashboard-bitrue-tools></dashboard-bitrue-tools>
           <dashboard-price-list pricesToShow={['WBTC','WETH','FLM','FLUND','bNEO','NEO','GAS','FUSD','USDT']} ></dashboard-price-list>
           <dashboard-ratio-list ratiosToShow={['bNEO/WBTC','FLM/WBTC','GAS/WBTC','FLM/bNEO|170/200','GAS/bNEO','FLM/GAS']}></dashboard-ratio-list>
           <dashboard-watch-list></dashboard-watch-list>

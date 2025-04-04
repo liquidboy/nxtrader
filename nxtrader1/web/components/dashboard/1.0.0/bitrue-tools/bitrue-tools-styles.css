@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-bitrue-tools .dashboard-bitrue-tools-value-text {
+   color: var(--dashboard-bitrue-tools-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-bitrue-tools:not(.oj-complete){
+  visibility:hidden;
+}
+
+dashboard-bitrue-tools{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-bitrue-tools[hidden]
+{
+  display: none;
+}
