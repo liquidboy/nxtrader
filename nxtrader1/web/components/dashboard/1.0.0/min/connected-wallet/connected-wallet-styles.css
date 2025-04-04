@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   dashboard-connected-wallet .dashboard-connected-wallet-value-text {
+   color: var(--dashboard-connected-wallet-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+dashboard-connected-wallet:not(.oj-complete){
+  visibility: hidden;
+}
+
+dashboard-connected-wallet{
+	min-height: 50px;
+	width: 50px;
+}
+
+dashboard-connected-wallet[hidden]
+{
+  display: none;
+}
