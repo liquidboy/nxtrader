@@ -76,6 +76,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
         const aFWETH = (0, signals_1.useSignal)([]);
         const aWETH = (0, signals_1.useSignal)([]);
         const aFLUND = (0, signals_1.useSignal)([]);
+        const aFLOCKS = (0, signals_1.useSignal)([]);
         (0, signals_1.useSignalEffect)(() => {
             if (price_list_1.prices.value && price_list_1.prices.value.length > 0) {
                 console.log("wallet-manager > useSignalEffect > prices changed");
@@ -170,6 +171,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
             aFWETH.value = [];
             aWETH.value = [];
             aFLUND.value = [];
+            aFLOCKS.value = [];
             exports.walletsMetadata.value.clear();
             exports.walletAssetTotals.value = [];
         }
@@ -260,7 +262,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     }
                     let runningWalletTotalInUsd = 0;
                     assets.forEach(a => {
-                        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+                        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
                         if (price_list_1.prices.value && a.balance && a.balance !== "0") {
                             let unitPriceFound = price_list_1.prices.value.find(p => p.symbol === a.symbol);
                             ;
@@ -303,6 +305,9 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                                 case "FLUND":
                                     aFLUND.value = [...aFLUND.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_m = w.displayName) !== null && _m !== void 0 ? _m : w.name, walletColor: w.walletColor })];
                                     break;
+                                case "FLOCKS":
+                                    aFLOCKS.value = [...aFLOCKS.value, Object.assign(Object.assign({}, a), { walletAddress: publicKey, walletName: (_o = w.displayName) !== null && _o !== void 0 ? _o : w.name, walletColor: w.walletColor })];
+                                    break;
                                 default: console.log(a.symbol);
                             }
                             const unitPriceInUsd = unitPriceFound ? unitPriceFound.usd_price : 0;
@@ -341,6 +346,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                     addNewTotal("fWETH", aFWETH.value);
                     addNewTotal("WETH", aWETH.value);
                     addNewTotal("FLUND", aFLUND.value);
+                    addNewTotal("FLOCKS", aFLOCKS.value);
                     exports.walletAssetTotals.value = newTotals;
                 }
                 ;
@@ -388,7 +394,7 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@preact
                             (0, asset_manager_1.showAssetManagerRoute)({ assetTransactionsHidden: false });
                         }
                         ;
-                    } }, { children: (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(asset_manager_1.AssetManager, { transactions: currentTransactions.value }) }) })), (0, jsx_runtime_1.jsx)("oj-drawer-popup", Object.assign({ id: "de", edge: "start", class: "drawerEditor", onojBeforeClose: close }, { children: (0, jsx_runtime_1.jsx)(wallet_editor_1.WalletEditor, { tryCreate: tryCreate, tryUpdate: tryUpdate, clear: clear, close: close, showAddWallet: showAddWallet, refreshAllWalletBalances: refreshAllWalletBalances }) })), (0, jsx_runtime_1.jsx)(wallet_list_1.WalletList, { wallets: exports.wallets.value, walletsMetadata: exports.walletsMetadata.value, walletSelected: walletSelected, tryDeleteWallet: tryDeleteWallet, showAddWallet: showAddWallet, showEditWallet: showEditWallet, refreshAllWalletBalances: refreshAllWalletBalances }), (0, jsx_runtime_1.jsx)(wallet_charts_1.WalletCharts, { chartData: exports.walletAssetTotals.value }), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-sm-margin-5x-top" }, { children: [(0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FUSD", wasset: aFUSD.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fUSDT", wasset: aFUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "USDT", wasset: aUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLM", wasset: aFLM.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLUND", wasset: aFLUND.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "bNEO", wasset: abNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "NEO", wasset: aNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "GAS", wasset: aGAS.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWBTC", wasset: aFWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WBTC", wasset: aWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWETH", wasset: aFWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WETH", wasset: aWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected })] }))] });
+                    } }, { children: (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(asset_manager_1.AssetManager, { transactions: currentTransactions.value }) }) })), (0, jsx_runtime_1.jsx)("oj-drawer-popup", Object.assign({ id: "de", edge: "start", class: "drawerEditor", onojBeforeClose: close }, { children: (0, jsx_runtime_1.jsx)(wallet_editor_1.WalletEditor, { tryCreate: tryCreate, tryUpdate: tryUpdate, clear: clear, close: close, showAddWallet: showAddWallet, refreshAllWalletBalances: refreshAllWalletBalances }) })), (0, jsx_runtime_1.jsx)(wallet_list_1.WalletList, { wallets: exports.wallets.value, walletsMetadata: exports.walletsMetadata.value, walletSelected: walletSelected, tryDeleteWallet: tryDeleteWallet, showAddWallet: showAddWallet, showEditWallet: showEditWallet, refreshAllWalletBalances: refreshAllWalletBalances }), (0, jsx_runtime_1.jsx)(wallet_charts_1.WalletCharts, { chartData: exports.walletAssetTotals.value }), (0, jsx_runtime_1.jsxs)("div", Object.assign({ class: "oj-flex oj-sm-margin-7x-start oj-sm-margin-7x-end oj-sm-margin-5x-top" }, { children: [(0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FUSD", wasset: aFUSD.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fUSDT", wasset: aFUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "USDT", wasset: aUSDT.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLM", wasset: aFLM.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLUND", wasset: aFLUND.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "FLOCKS", wasset: aFLOCKS.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "bNEO", wasset: abNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "NEO", wasset: aNEO.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "GAS", wasset: aGAS.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWBTC", wasset: aFWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WBTC", wasset: aWBTC.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "fWETH", wasset: aFWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected }), (0, jsx_runtime_1.jsx)(asset_card_1.AssetCard, { wassetName: "WETH", wasset: aWETH.value, prices: price_list_1.prices.value, onCardSelected: assetSelected })] }))] });
     }
     exports.WalletManager = (0, ojvcomponent_1.registerCustomElement)("dashboard-wallet-manager", WalletManagerImpl, "WalletManager");
     function getWallet(address) {

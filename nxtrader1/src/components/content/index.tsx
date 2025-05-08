@@ -25,14 +25,14 @@ export function Content() {
         <div class="first-column-content">
           <dashboard-bitrue-tools></dashboard-bitrue-tools>
           <dashboard-connected-wallet></dashboard-connected-wallet>
-          <dashboard-price-list pricesToShow={['WBTC','WETH','FLM','FLUND','bNEO','NEO','GAS','FUSD','USDT']} ></dashboard-price-list>
+          <dashboard-price-list pricesToShow={['WBTC','WETH','FLM','FLOCKS','bNEO','NEO','GAS','FUSD','USDT']} ></dashboard-price-list>
           <dashboard-ratio-list ratiosToShow={['bNEO/WBTC','FLM/WBTC','GAS/WBTC','FLM/bNEO|170/200','GAS/bNEO','FLM/GAS']}></dashboard-ratio-list>
           <dashboard-watch-list></dashboard-watch-list>
         </div>
         <div class="oj-flex-item wallet-manager-content">
           <dashboard-wallet-manager></dashboard-wallet-manager>
           <dashboard-bot-maintainer></dashboard-bot-maintainer>
-          <dashboard-risk-profile high={['FLM','FLUND','GAS']} medium={['NEO','bNEO','WETH']} low={['WBTC']} stables={['FUSD','USDT']}></dashboard-risk-profile>
+          <dashboard-risk-profile high={['FLM','FLOCKS','GAS']} medium={['NEO','bNEO','WETH']} low={['WBTC']} stables={['FUSD','USDT']}></dashboard-risk-profile>
         </div>
       </div>
       <dashboard-notifications-layer></dashboard-notifications-layer>

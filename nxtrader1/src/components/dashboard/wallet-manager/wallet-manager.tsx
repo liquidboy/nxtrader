@@ -135,6 +135,7 @@ function WalletManagerImpl() {
   const aFWETH = useSignal<Array<CAsset>>([]);
   const aWETH = useSignal<Array<CAsset>>([]);
   const aFLUND = useSignal<Array<CAsset>>([]);
+  const aFLOCKS = useSignal<Array<CAsset>>([]);
 
   useSignalEffect(() => {
     if(prices.value && prices.value.length > 0) {
@@ -245,6 +246,7 @@ function WalletManagerImpl() {
     aFWETH.value = [];
     aWETH.value = [];
     aFLUND.value = [];
+    aFLOCKS.value = [];
     walletsMetadata.value.clear();
     walletAssetTotals.value=[];
   }
@@ -366,6 +368,7 @@ function WalletManagerImpl() {
             case "fWETH" : aFWETH.value = [...aFWETH.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "WETH" : aWETH.value = [...aWETH.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             case "FLUND" : aFLUND.value = [...aFLUND.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
+            case "FLOCKS" : aFLOCKS.value = [...aFLOCKS.value, {...a, walletAddress: publicKey, walletName: w.displayName ?? w.name, walletColor: w.walletColor}]; break;
             default: console.log(a.symbol);
           }
           const unitPriceInUsd = unitPriceFound ? unitPriceFound.usd_price : 0;
@@ -408,6 +411,7 @@ function WalletManagerImpl() {
       addNewTotal("fWETH", aFWETH.value);
       addNewTotal("WETH", aWETH.value);
       addNewTotal("FLUND", aFLUND.value);
+      addNewTotal("FLOCKS", aFLOCKS.value);
 
       walletAssetTotals.value = newTotals;
     };
@@ -491,6 +495,7 @@ function WalletManagerImpl() {
       <AssetCard wassetName="USDT" wasset={aUSDT.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="FLM" wasset={aFLM.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="FLUND" wasset={aFLUND.value} prices={prices.value} onCardSelected={assetSelected} />
+      <AssetCard wassetName="FLOCKS" wasset={aFLOCKS.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="bNEO" wasset={abNEO.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="NEO" wasset={aNEO.value} prices={prices.value} onCardSelected={assetSelected} />
       <AssetCard wassetName="GAS" wasset={aGAS.value} prices={prices.value} onCardSelected={assetSelected} />
