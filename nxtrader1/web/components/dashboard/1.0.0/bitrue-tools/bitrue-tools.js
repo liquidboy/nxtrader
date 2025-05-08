@@ -14,11 +14,10 @@ define(["require", "exports", "preact/jsx-runtime", "ojs/ojvcomponent", "@cityof
     const RPC_NODE_URL = "https://rpc2.n3.nspcc.ru:10331";
     const ROUTER_SCRIPT_HASH = "0xf970f4ccecd765b63732b821775dc38c25d74f23";
     const RPC_CLIENT = new neon_core_1.rpc.RPCClient(RPC_NODE_URL);
-    function BitrueToolsImpl({ message = "." }) {
-        console.log("xxx rpc", RPC_CLIENT);
+    function BitrueToolsImpl({ message = "" }) {
         return (0, jsx_runtime_1.jsx)("p", { children: message });
     }
-    exports.BitrueTools = (0, ojvcomponent_1.registerCustomElement)("dashboard-bitrue-tools", BitrueToolsImpl, "BitrueTools", { "properties": { "message": { "type": "string" } } }, { "message": "." });
+    exports.BitrueTools = (0, ojvcomponent_1.registerCustomElement)("dashboard-bitrue-tools", BitrueToolsImpl, "BitrueTools", { "properties": { "message": { "type": "string" } } }, { "message": "" });
     function createFlamingoSwap(fromToken, toToken, quantity, minOutQuantity, accountAddress, accountScriptHash) {
         return __awaiter(this, void 0, void 0, function* () {
             const maxDelay = 60000;

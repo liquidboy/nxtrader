@@ -21,10 +21,10 @@ type Props = Readonly<{
  * 
  */
 function BitrueToolsImpl(
-  { message = "." }: Props
+  { message = "" }: Props
 ) {
 
-  console.log("xxx rpc", RPC_CLIENT);
+  //console.log("xxx rpc", RPC_CLIENT);
   return <p>{message}</p>
 }
 
